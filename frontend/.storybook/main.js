@@ -2,7 +2,10 @@
 const config = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-essentials',
+    '@storybook/addon-webpack5-compiler-swc',
+    '@storybook/addon-onboarding',
+    '@storybook/addon-a11y',
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/react-webpack5',
