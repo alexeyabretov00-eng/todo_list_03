@@ -1,0 +1,841 @@
+openapi: 3.0.3
+info:
+  title: Hierarchical Todo Management API
+  description: |
+    REST API for hierarchical todo management with 3-level organization (Lists → Elements → Sub-items).
+    Single-user application with offline sync support.
+  version: 1.0.0
+  contact:
+    name: Todo List API
+servers:
+  - url: http://localhost:3001/api
+    description: Development server
+  - url: /api
+    description: Production (same origin)
+
+tags:
+  - name: Lists
+    description: Todo list management operations
+  - name: Elements
+    description: Todo element management operations
+  - name: SubItems
+    description: Sub-item management operations
+
+paths:
+  /lists:
+    get:
+      tags: [Lists]
+      summary: Get all todo lists
+      description: Retrieve all lists with optional inclusion of elements
+      parameters:
+        - name: includeElements
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include elements in response
+      responses:
+        '200':
+          description: List of todo lists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoList'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    post:
+      tags: [Lists]
+      summary: Create a new todo list
+      description: Create a new list. Max 20 lists allowed.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateListRequest'
+      responses:
+        '201':
+          description: List created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /lists/{listId}:
+    parameters:
+      - $ref: '#/components/parameters/ListId'
+    
+    get:
+      tags: [Lists]
+      summary: Get a single todo list
+      description: Retrieve a list by ID with optional inclusion of elements
+      parameters:
+        - name: includeElements
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Todo list details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoList'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    put:
+      tags: [Lists]
+      summary: Update a todo list
+      description: Update list name or display order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateListRequest'
+      responses:
+        '200':
+          description: List updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    delete:
+      tags: [Lists]
+      summary: Delete a todo list
+      description: Delete list and all contained elements and sub-items (CASCADE)
+      responses:
+        '204':
+          description: List deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /lists/reorder:
+    put:
+      tags: [Lists]
+      summary: Reorder todo lists
+      description: Update display order of all lists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderListsRequest'
+      responses:
+        '200':
+          description: Lists reordered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Lists reordered successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /lists/{listId}/elements:
+    parameters:
+      - $ref: '#/components/parameters/ListId'
+    
+    get:
+      tags: [Elements]
+      summary: Get all elements for a list
+      description: Retrieve all elements in a list with optional sub-items
+      parameters:
+        - name: includeSubItems
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: List of todo elements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoElement'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    post:
+      tags: [Elements]
+      summary: Create a new todo element
+      description: Create element in list. Max 100 elements per list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateElementRequest'
+      responses:
+        '201':
+          description: Element created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoElement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /elements/{elementId}:
+    parameters:
+      - $ref: '#/components/parameters/ElementId'
+    
+    get:
+      tags: [Elements]
+      summary: Get a single todo element
+      description: Retrieve element by ID with optional sub-items
+      parameters:
+        - name: includeSubItems
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Todo element details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoElement'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    put:
+      tags: [Elements]
+      summary: Update a todo element
+      description: Update element text, completion state, or display order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateElementRequest'
+      responses:
+        '200':
+          description: Element updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoElement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    delete:
+      tags: [Elements]
+      summary: Delete a todo element
+      description: Delete element and all sub-items (CASCADE)
+      responses:
+        '204':
+          description: Element deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /elements/{elementId}/complete:
+    parameters:
+      - $ref: '#/components/parameters/ElementId'
+    
+    put:
+      tags: [Elements]
+      summary: Toggle element completion
+      description: Mark element complete/incomplete. Completing element marks all sub-items complete.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isCompleted:
+                  type: boolean
+              required: [isCompleted]
+      responses:
+        '200':
+          description: Element completion updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoElement'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /elements/{elementId}/move:
+    parameters:
+      - $ref: '#/components/parameters/ElementId'
+    
+    put:
+      tags: [Elements]
+      summary: Move element to different list
+      description: Move element from one list to another. Destination list must have < 100 elements.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoveElementRequest'
+      responses:
+        '200':
+          description: Element moved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoElement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /lists/{listId}/elements/reorder:
+    parameters:
+      - $ref: '#/components/parameters/ListId'
+    
+    put:
+      tags: [Elements]
+      summary: Reorder elements within a list
+      description: Update display order of elements in a list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderElementsRequest'
+      responses:
+        '200':
+          description: Elements reordered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Elements reordered successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /elements/{elementId}/sub-items:
+    parameters:
+      - $ref: '#/components/parameters/ElementId'
+    
+    get:
+      tags: [SubItems]
+      summary: Get all sub-items for an element
+      description: Retrieve all sub-items in an element
+      responses:
+        '200':
+          description: List of sub-items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubItem'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    post:
+      tags: [SubItems]
+      summary: Create a new sub-item
+      description: Create sub-item in element. Max 20 sub-items per element.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubItemRequest'
+      responses:
+        '201':
+          description: Sub-item created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /sub-items/{subItemId}:
+    parameters:
+      - $ref: '#/components/parameters/SubItemId'
+    
+    get:
+      tags: [SubItems]
+      summary: Get a single sub-item
+      description: Retrieve sub-item by ID
+      responses:
+        '200':
+          description: Sub-item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubItem'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    put:
+      tags: [SubItems]
+      summary: Update a sub-item
+      description: Update sub-item text, completion state, or display order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubItemRequest'
+      responses:
+        '200':
+          description: Sub-item updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    
+    delete:
+      tags: [SubItems]
+      summary: Delete a sub-item
+      description: Delete sub-item
+      responses:
+        '204':
+          description: Sub-item deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /sub-items/{subItemId}/complete:
+    parameters:
+      - $ref: '#/components/parameters/SubItemId'
+    
+    put:
+      tags: [SubItems]
+      summary: Toggle sub-item completion
+      description: Mark sub-item complete/incomplete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isCompleted:
+                  type: boolean
+              required: [isCompleted]
+      responses:
+        '200':
+          description: Sub-item completion updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubItem'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /elements/{elementId}/sub-items/reorder:
+    parameters:
+      - $ref: '#/components/parameters/ElementId'
+    
+    put:
+      tags: [SubItems]
+      summary: Reorder sub-items within an element
+      description: Update display order of sub-items in an element
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReorderSubItemsRequest'
+      responses:
+        '200':
+          description: Sub-items reordered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Sub-items reordered successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  parameters:
+    ListId:
+      name: listId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Todo list unique identifier
+    
+    ElementId:
+      name: elementId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Todo element unique identifier
+    
+    SubItemId:
+      name: subItemId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Sub-item unique identifier
+
+  schemas:
+    TodoList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        name:
+          type: string
+          minLength: 1
+          maxLength: 500
+          example: "Work Projects"
+        displayOrder:
+          type: integer
+          minimum: 0
+          example: 0
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-02-16T10:30:00.000Z"
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/TodoElement'
+          description: Included when includeElements=true
+      required:
+        - id
+        - name
+        - displayOrder
+        - createdAt
+    
+    TodoElement:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        listId:
+          type: string
+          format: uuid
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+          example: "Prepare presentation"
+        isCompleted:
+          type: boolean
+          default: false
+        displayOrder:
+          type: integer
+          minimum: 0
+        createdAt:
+          type: string
+          format: date-time
+        subItemCount:
+          type: integer
+          minimum: 0
+          description: Total number of sub-items (computed)
+        completedSubItemCount:
+          type: integer
+          minimum: 0
+          description: Number of completed sub-items (computed)
+        progressPercentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Completion percentage (computed)
+        subItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubItem'
+          description: Included when includeSubItems=true
+      required:
+        - id
+        - listId
+        - text
+        - isCompleted
+        - displayOrder
+        - createdAt
+    
+    SubItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        elementId:
+          type: string
+          format: uuid
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+          example: "Research topic"
+        isCompleted:
+          type: boolean
+          default: false
+        displayOrder:
+          type: integer
+          minimum: 0
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - elementId
+        - text
+        - isCompleted
+        - displayOrder
+        - createdAt
+    
+    CreateListRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 500
+      required:
+        - name
+    
+    UpdateListRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 500
+        displayOrder:
+          type: integer
+          minimum: 0
+      minProperties: 1
+    
+    ReorderListsRequest:
+      type: object
+      properties:
+        listIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+      required:
+        - listIds
+    
+    CreateElementRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+      required:
+        - text
+    
+    UpdateElementRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+        isCompleted:
+          type: boolean
+        displayOrder:
+          type: integer
+          minimum: 0
+      minProperties: 1
+    
+    MoveElementRequest:
+      type: object
+      properties:
+        targetListId:
+          type: string
+          format: uuid
+      required:
+        - targetListId
+    
+    ReorderElementsRequest:
+      type: object
+      properties:
+        elementIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+      required:
+        - elementIds
+    
+    CreateSubItemRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+      required:
+        - text
+    
+    UpdateSubItemRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+        isCompleted:
+          type: boolean
+        displayOrder:
+          type: integer
+          minimum: 0
+      minProperties: 1
+    
+    ReorderSubItemsRequest:
+      type: object
+      properties:
+        subItemIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+      required:
+        - subItemIds
+    
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Human-readable error message
+        code:
+          type: string
+          description: Machine-readable error code
+        details:
+          type: object
+          description: Additional error details
+      required:
+        - error
+        - code
+
+  responses:
+    BadRequest:
+      description: Bad request (validation error, limit exceeded)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          examples:
+            validationError:
+              value:
+                error: "Validation failed"
+                code: "VALIDATION_ERROR"
+                details:
+                  field: "name"
+                  message: "Name is required"
+            limitExceeded:
+              value:
+                error: "Maximum 20 lists allowed"
+                code: "LIMIT_EXCEEDED"
+                details:
+                  limit: 20
+                  current: 20
+    
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            error: "List not found"
+            code: "NOT_FOUND"
+    
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            error: "An unexpected error occurred"
+            code: "INTERNAL_ERROR"
