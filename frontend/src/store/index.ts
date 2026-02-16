@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-// Slice imports will be added in future tasks
-// import listsReducer from './slices/listsSlice';
-// import appReducer from './slices/appSlice';
+import listsReducer from './slices/listsSlice';
+import elementsReducer from './slices/elementsSlice';
+import offlineQueueReducer from './slices/offlineQueueSlice';
 
 export const store = configureStore({
   reducer: {
-    // Reducers will be added in Phase 3-7
-    // lists: listsReducer,
-    // app: appReducer,
+    lists: listsReducer,
+    elements: elementsReducer,
+    offlineQueue: offlineQueueReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+import initSqlJs from 'sql.js';
 import path from 'path';
 import fs from 'fs';
 
@@ -10,15 +10,45 @@ if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
 }
 
+let db: initSqlJs.Database;
+
 // Initialize database connection
-const db = new Database(DB_PATH, {
-  verbose: process.env.NODE_ENV === 'development' ? console.log : undefined,
-});
+export async function initDatabase() {
+  const SQL = await initSqlJs();
+  
+  try {
+    if (fs.existsSync(DB_PATH)) {
+      const buffer = fs.readFileSync(DB_PATH);
+      db = new SQL.Database(buffer);
+    } else {
+      db = new SQL.Database();
+    }
+    
+    // Enable foreign keys
+    db.run('PRAGMA foreign_keys = ON');
+    
+    return db;
+  } catch (error) {
+    console.error('Failed to initialize database:', error);
+    throw error;
+  }
+}
 
-// Enable foreign keys
-db.pragma('foreign_keys = ON');
+// Save database to file
+export function saveDatabase() {
+  if (db) {
+    const data = db.export();
+    const buffer = Buffer.from(data);
+    fs.writeFileSync(DB_PATH, buffer);
+  }
+}
 
-// Enable WAL mode for better concurrency
-db.pragma('journal_mode = WAL');
+// Get database instance
+export function getDatabase(): initSqlJs.Database {
+  if (!db) {
+    throw new Error('Database not initialized. Call initDatabase() first.');
+  }
+  return db;
+}
 
 export default db;
