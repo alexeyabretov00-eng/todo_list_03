@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Coverage
+coverage/
+
+# Generated files
+*.d.ts
+*.min.js
+
+# Service worker
+service-worker.js
+serviceWorkerRegistration.ts

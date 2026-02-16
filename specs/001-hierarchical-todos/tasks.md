@@ -31,21 +31,21 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directory structure: `backend/` and `frontend/` as defined in [plan.md](./plan.md#L52-L105)
-- [ ] T002 Initialize backend package with Node.js 20.x: `backend/package.json` with TypeScript, Express, better-sqlite3, cors, dotenv dependencies per [quickstart.md](./quickstart.md#L23-L32)
-- [ ] T003 [P] Initialize frontend package with React 19.x: `frontend/package.json` with React 19, Redux Toolkit, styled-components, Ant Design, react-hook-form, Zod, react-beautiful-dnd per [quickstart.md](./quickstart.md#L88-L111)
-- [ ] T004 [P] Configure backend TypeScript: `backend/tsconfig.json` with strict mode, ES2022 target, node module resolution per [quickstart.md](./quickstart.md#L59-L73)
-- [ ] T005 [P] Configure frontend TypeScript: `frontend/tsconfig.json` with strict mode, path aliases (@components, @hooks, etc.) per [quickstart.md](./quickstart.md#L113-L136)
-- [ ] T006 [P] Configure Webpack: `frontend/webpack.config.js` with ts-loader, HtmlWebpackPlugin, WorkboxWebpackPlugin, dev server proxy per [quickstart.md](./quickstart.md#L138-L184)
-- [ ] T007 [P] Setup linting: `frontend/.eslintrc.json` with TypeScript parser, React plugin, simple-import-sort per [quickstart.md](./quickstart.md#L214-L231)
-- [ ] T008 [P] Setup formatting: `.prettierrc` with project code style rules per [quickstart.md](./quickstart.md#L233-L241)
-- [ ] T009 [P] Setup commit linting: `commitlint.config.js` with conventional commits per [quickstart.md](./quickstart.md#L243-L247)
-- [ ] T010 [P] Create backend environment template: `backend/.env.example` with PORT, DB_PATH, CORS_ORIGIN per [quickstart.md](./quickstart.md#L87)
-- [ ] T011 [P] Create frontend environment template: `frontend/.env.example` with REACT_APP_API_URL per [quickstart.md](./quickstart.md#L212)
-- [ ] T012 [P] Create HTML entry point: `frontend/public/index.html` with PWA meta tags and app root div
-- [ ] T013 [P] Configure Jest for backend: `backend/jest.config.js` with ts-jest preset, coverage thresholds ≥80%
-- [ ] T014 [P] Configure Jest for frontend: `frontend/jest.config.js` with React Testing Library, moduleNameMapper for path aliases, coverage thresholds ≥80%
-- [ ] T015 [P] Initialize Storybook: `frontend/.storybook/` configuration for React components per [quickstart.md](./quickstart.md#L109)
+- [X] T001 Create project directory structure: `backend/` and `frontend/` as defined in [plan.md](./plan.md#L52-L105)
+- [X] T002 Initialize backend package with Node.js 20.x: `backend/package.json` with TypeScript, Express, better-sqlite3, cors, dotenv dependencies per [quickstart.md](./quickstart.md#L23-L32)
+- [X] T003 [P] Initialize frontend package with React 19.x: `frontend/package.json` with React 19, Redux Toolkit, styled-components, Ant Design, react-hook-form, Zod, react-beautiful-dnd per [quickstart.md](./quickstart.md#L88-L111)
+- [X] T004 [P] Configure backend TypeScript: `backend/tsconfig.json` with strict mode, ES2022 target, node module resolution per [quickstart.md](./quickstart.md#L59-L73)
+- [X] T005 [P] Configure frontend TypeScript: `frontend/tsconfig.json` with strict mode, path aliases (@components, @hooks, etc.) per [quickstart.md](./quickstart.md#L113-L136)
+- [X] T006 [P] Configure Webpack: `frontend/webpack.config.js` with ts-loader, HtmlWebpackPlugin, WorkboxWebpackPlugin, dev server proxy per [quickstart.md](./quickstart.md#L138-L184)
+- [X] T007 [P] Setup linting: `frontend/.eslintrc.json` with TypeScript parser, React plugin, simple-import-sort per [quickstart.md](./quickstart.md#L214-L231)
+- [X] T008 [P] Setup formatting: `.prettierrc` with project code style rules per [quickstart.md](./quickstart.md#L233-L241)
+- [X] T009 [P] Setup commit linting: `commitlint.config.js` with conventional commits per [quickstart.md](./quickstart.md#L243-L247)
+- [X] T010 [P] Create backend environment template: `backend/.env.example` with PORT, DB_PATH, CORS_ORIGIN per [quickstart.md](./quickstart.md#L87)
+- [X] T011 [P] Create frontend environment template: `frontend/.env.example` with REACT_APP_API_URL per [quickstart.md](./quickstart.md#L212)
+- [X] T012 [P] Create HTML entry point: `frontend/public/index.html` with PWA meta tags and app root div
+- [X] T013 [P] Configure Jest for backend: `backend/jest.config.js` with ts-jest preset, coverage thresholds ≥80%
+- [X] T014 [P] Configure Jest for frontend: `frontend/jest.config.js` with React Testing Library, moduleNameMapper for path aliases, coverage thresholds ≥80%
+- [X] T015 [P] Initialize Storybook: `frontend/.storybook/` configuration for React components per [quickstart.md](./quickstart.md#L109)
 
 ---
 
@@ -57,28 +57,28 @@
 
 ### Backend Foundation
 
-- [ ] T016 Setup SQLite database connection: `backend/src/db/database.ts` with better-sqlite3 initialization, connection pooling, error handling per [data-model.md](./data-model.md#L367-L389)
-- [ ] T017 Create database migration v1: `backend/src/db/migrations/001_initial_schema.sql` with TodoList, TodoElement, SubItem tables per [data-model.md](./data-model.md#L367-L389)
-- [ ] T018 Implement migration runner: `backend/src/db/migrate.ts` to execute migrations on startup per [data-model.md](./data-model.md#L391-L397)
-- [ ] T019 Create database indexes: Add indexes for listId, elementId, displayOrder per [data-model.md](./data-model.md#L221-L249)
-- [ ] T020 [P] Define TypeScript types: `backend/src/types/entities.ts` with TodoList, TodoElement, SubItem interfaces per [data-model.md](./data-model.md#L251-L324)
-- [ ] T021 [P] Define API request/response types: `backend/src/types/api.ts` with Create/Update/Reorder request types per [data-model.md](./data-model.md#L285-L324)
-- [ ] T022 Setup Express app: `backend/src/app.ts` with CORS middleware, JSON parser, error handler per [research.md](./research.md#L57-L65)
-- [ ] T023 [P] Create error handling middleware: `backend/src/api/middleware/errorHandler.ts` for consistent error responses per [contracts/README.md](./contracts/README.md#L148-L171)
-- [ ] T024 [P] Create validation middleware: `backend/src/api/middleware/validator.ts` for request validation per [contracts/README.md](./contracts/README.md#L173-L183)
-- [ ] T025 Create server entry point: `backend/src/server.ts` to start Express app on PORT from env per [quickstart.md](./quickstart.md#L75)
+- [X] T016 Setup SQLite database connection: `backend/src/db/database.ts` with better-sqlite3 initialization, connection pooling, error handling per [data-model.md](./data-model.md#L367-L389)
+- [X] T017 Create database migration v1: `backend/src/db/migrations/001_initial_schema.sql` with TodoList, TodoElement, SubItem tables per [data-model.md](./data-model.md#L367-L389)
+- [X] T018 Implement migration runner: `backend/src/db/migrate.ts` to execute migrations on startup per [data-model.md](./data-model.md#L391-L397)
+- [X] T019 Create database indexes: Add indexes for listId, elementId, displayOrder per [data-model.md](./data-model.md#L221-L249)
+- [X] T020 [P] Define TypeScript types: `backend/src/types/entities.ts` with TodoList, TodoElement, SubItem interfaces per [data-model.md](./data-model.md#L251-L324)
+- [X] T021 [P] Define API request/response types: `backend/src/types/api.ts` with Create/Update/Reorder request types per [data-model.md](./data-model.md#L285-L324)
+- [X] T022 Setup Express app: `backend/src/app.ts` with CORS middleware, JSON parser, error handler per [research.md](./research.md#L57-L65)
+- [X] T023 [P] Create error handling middleware: `backend/src/api/middleware/errorHandler.ts` for consistent error responses per [contracts/README.md](./contracts/README.md#L148-L171)
+- [X] T024 [P] Create validation middleware: `backend/src/api/middleware/validator.ts` for request validation per [contracts/README.md](./contracts/README.md#L173-L183)
+- [X] T025 Create server entry point: `backend/src/server.ts` to start Express app on PORT from env per [quickstart.md](./quickstart.md#L75)
 
 ### Frontend Foundation
 
-- [ ] T026 Define TypeScript types: `frontend/src/types/entities.ts` with TodoList, TodoElement, SubItem, matching backend types per [data-model.md](./data-model.md#L251-L284)
-- [ ] T027 [P] Create Redux store: `frontend/src/store/index.ts` with configureStore, rootReducer per [research.md](./research.md#L25-L38)
-- [ ] T028 [P] Create API client utility: `frontend/src/api/client.ts` with fetch wrapper, error handling, retry logic per [research.md](./research.md#L73-L78)
-- [ ] T029 [P] Create theme configuration: `frontend/src/styles/theme.ts` with colors, typography, spacing, breakpoints for styled-components per [research.md](./research.md#L11-L17)
-- [ ] T030 [P] Create global styles: `frontend/src/styles/GlobalStyles.ts` with CSS reset, base styles per [research.md](./research.md#L11-L17)
-- [ ] T031 Create app entry point: `frontend/src/index.tsx` with React.render, Redux Provider, theme provider per [quickstart.md](./quickstart.md#L138-L184)
-- [ ] T032 [P] Setup service worker: `frontend/src/serviceWorkerRegistration.ts` for PWA offline support per [research.md](./research.md#L109-L123)
-- [ ] T033 [P] Create offline queue types: `frontend/src/types/offlineQueue.ts` with QueuedOperation interface per [data-model.md](./data-model.md#L326-L347)
-- [ ] T034 [P] Implement IndexedDB wrapper: `frontend/src/services/offlineStorage.ts` using idb library for queue persistence per [research.md](./research.md#L115-L123)
+- [X] T026 Define TypeScript types: `frontend/src/types/entities.ts` with TodoList, TodoElement, SubItem, matching backend types per [data-model.md](./data-model.md#L251-L284)
+- [X] T027 [P] Create Redux store: `frontend/src/store/index.ts` with configureStore, rootReducer per [research.md](./research.md#L25-L38)
+- [X] T028 [P] Create API client utility: `frontend/src/api/client.ts` with fetch wrapper, error handling, retry logic per [research.md](./research.md#L73-L78)
+- [X] T029 [P] Create theme configuration: `frontend/src/styles/theme.ts` with colors, typography, spacing, breakpoints for styled-components per [research.md](./research.md#L11-L17)
+- [X] T030 [P] Create global styles: `frontend/src/styles/GlobalStyles.ts` with CSS reset, base styles per [research.md](./research.md#L11-L17)
+- [X] T031 Create app entry point: `frontend/src/index.tsx` with React.render, Redux Provider, theme provider per [quickstart.md](./quickstart.md#L138-L184)
+- [X] T032 [P] Setup service worker: `frontend/src/serviceWorkerRegistration.ts` for PWA offline support per [research.md](./research.md#L109-L123)
+- [X] T033 [P] Create offline queue types: `frontend/src/types/offlineQueue.ts` with QueuedOperation interface per [data-model.md](./data-model.md#L326-L347)
+- [X] T034 [P] Implement IndexedDB wrapper: `frontend/src/services/offlineStorage.ts` using idb library for queue persistence per [research.md](./research.md#L115-L123)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
