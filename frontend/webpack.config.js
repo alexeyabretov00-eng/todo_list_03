@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WorkboxPlugin } = require('workbox-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
@@ -35,18 +36,25 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
       alias: {
-        '@components': path.resolve(__dirname, 'src/components'),
-        '@containers': path.resolve(__dirname, 'src/containers'),
-        '@hooks': path.resolve(__dirname, 'src/hooks'),
-        '@utils': path.resolve(__dirname, 'src/utils'),
-        '@api': path.resolve(__dirname, 'src/api'),
-        '@styles': path.resolve(__dirname, 'src/styles'),
-        '@assets': path.resolve(__dirname, 'src/assets'),
-        '@services': path.resolve(__dirname, 'src/services'),
-        '@types': path.resolve(__dirname, 'src/types'),
+        '@/components': path.resolve(__dirname, 'src/components'),
+        '@/containers': path.resolve(__dirname, 'src/containers'),
+        '@/hooks': path.resolve(__dirname, 'src/hooks'),
+        '@/utils': path.resolve(__dirname, 'src/utils'),
+        '@/api': path.resolve(__dirname, 'src/api'),
+        '@/store': path.resolve(__dirname, 'src/store'),
+        '@/styles': path.resolve(__dirname, 'src/styles'),
+        '@/assets': path.resolve(__dirname, 'src/assets'),
+        '@/services': path.resolve(__dirname, 'src/services'),
+        '@/types': path.resolve(__dirname, 'src/types'),
       },
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_API_URL': JSON.stringify(
+          process.env.REACT_APP_API_URL || 'http://localhost:3001/api'
+        ),
+        'process.env.NODE_ENV': JSON.stringify(argv.mode || 'development'),
+      }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
       }),
@@ -56,8 +64,9 @@ module.exports = (env, argv) => {
       }),
     ].filter(Boolean),
     devServer: {
-      port: 3000,
+      port: 8080,
       hot: true,
+      open: true,
       historyApiFallback: true,
       proxy: [
         {

@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import { Theme } from './theme';
 
-export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
+export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -18,8 +17,8 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
     font-family: ${(props) => props.theme.typography.fontFamily};
     font-size: ${(props) => props.theme.typography.fontSize.base};
     line-height: ${(props) => props.theme.typography.lineHeight.normal};
-    color: ${(props) => props.theme.colors.text.primary};
-    background-color: ${(props) => props.theme.colors.background.default};
+    color: ${(props) => props.theme.colors.text};
+    background-color: ${(props) => props.theme.colors.background};
     overflow-x: hidden;
   }
 
@@ -81,15 +80,15 @@ export const GlobalStyles = createGlobalStyle<{ theme: Theme }>`
   }
 
   ::-webkit-scrollbar-track {
-    background: ${(props) => props.theme.colors.background.default};
+    background: ${(props) => props.theme.colors.backgroundSecondary};
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme.colors.border.default};
+    background: ${(props) => props.theme.colors.border};
     border-radius: ${(props) => props.theme.borderRadius.md};
 
     &:hover {
-      background: ${(props) => props.theme.colors.text.secondary};
+      background: ${(props) => props.theme.colors.textSecondary};
     }
   }
 

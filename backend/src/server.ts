@@ -7,14 +7,18 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 // Run migrations on startup
-try {
-  runMigrations();
-} catch (error) {
-  console.error('Failed to run migrations:', error);
-  process.exit(1);
+async function startServer() {
+  try {
+    await runMigrations();
+    
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`API available at http://localhost:${PORT}/api`);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
 }
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`API available at http://localhost:${PORT}/api`);
-});
+startServer();

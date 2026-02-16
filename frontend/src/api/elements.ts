@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import { TodoElement, TodoElementWithSubItems } from '../types/entities';
+import { TodoElement, TodoElementWithSubItems } from '@/types/entities';
 
 export interface CreateElementDto {
   text: string;

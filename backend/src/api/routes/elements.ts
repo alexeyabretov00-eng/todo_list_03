@@ -9,7 +9,7 @@ const router = Router();
  * Get all elements for a list
  */
 router.get('/lists/:listId/elements', asyncHandler(async (req: Request, res: Response) => {
-  const { listId } = req.params;
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
   const includeSubItems = req.query.includeSubItems === 'true';
   
   try {
@@ -33,7 +33,7 @@ router.get('/lists/:listId/elements', asyncHandler(async (req: Request, res: Res
  * Create a new element in a list
  */
 router.post('/lists/:listId/elements', asyncHandler(async (req: Request, res: Response) => {
-  const { listId } = req.params;
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
   const { text } = req.body;
   
   if (!text) {
@@ -82,7 +82,7 @@ router.post('/lists/:listId/elements', asyncHandler(async (req: Request, res: Re
  * Get a single element
  */
 router.get('/:elementId', asyncHandler(async (req: Request, res: Response) => {
-  const { elementId } = req.params;
+  const elementId = (Array.isArray(req.params.elementId) ? req.params.elementId[0] : req.params.elementId) as string;
   const includeSubItems = req.query.includeSubItems === 'true';
   
   const element = await TodoElementService.getElementById(elementId, includeSubItems);
@@ -104,7 +104,7 @@ router.get('/:elementId', asyncHandler(async (req: Request, res: Response) => {
  * Update an element
  */
 router.put('/:elementId', asyncHandler(async (req: Request, res: Response) => {
-  const { elementId } = req.params;
+  const elementId = (Array.isArray(req.params.elementId) ? req.params.elementId[0] : req.params.elementId) as string;
   const { text, isCompleted, displayOrder } = req.body;
   
   if (text === undefined && isCompleted === undefined && displayOrder === undefined) {
@@ -152,7 +152,7 @@ router.put('/:elementId', asyncHandler(async (req: Request, res: Response) => {
  * Delete an element
  */
 router.delete('/:elementId', asyncHandler(async (req: Request, res: Response) => {
-  const { elementId } = req.params;
+  const elementId = (Array.isArray(req.params.elementId) ? req.params.elementId[0] : req.params.elementId) as string;
   
   const deleted = await TodoElementService.deleteElement(elementId);
   
@@ -173,7 +173,7 @@ router.delete('/:elementId', asyncHandler(async (req: Request, res: Response) =>
  * Toggle element completion
  */
 router.put('/:elementId/complete', asyncHandler(async (req: Request, res: Response) => {
-  const { elementId } = req.params;
+  const elementId = (Array.isArray(req.params.elementId) ? req.params.elementId[0] : req.params.elementId) as string;
   const { isCompleted } = req.body;
   
   if (typeof isCompleted !== 'boolean') {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TodoElement as TodoElementType } from '../../types/entities';
+import { TodoElement as TodoElementType } from '@/types/entities';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import {

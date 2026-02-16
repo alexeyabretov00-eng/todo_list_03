@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { TodoList } from '../types/entities';
-import { listsApi, CreateListDto, UpdateListDto } from '../api/lists';
+import { TodoList } from '@/types/entities';
+import { listsApi, CreateListDto, UpdateListDto } from '@/api/lists';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ListsState {

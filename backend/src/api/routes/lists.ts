@@ -59,7 +59,7 @@ router.post('/', asyncHandler(async (req: Request, res: Response) => {
  * Get a single todo list
  */
 router.get('/:listId', asyncHandler(async (req: Request, res: Response) => {
-  const { listId } = req.params;
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
   const includeElements = req.query.includeElements === 'true';
   
   const list = await TodoListService.getListById(listId, includeElements);
@@ -81,7 +81,7 @@ router.get('/:listId', asyncHandler(async (req: Request, res: Response) => {
  * Update a todo list
  */
 router.put('/:listId', asyncHandler(async (req: Request, res: Response) => {
-  const { listId } = req.params;
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
   const { name, displayOrder } = req.body;
   
   if (name === undefined && displayOrder === undefined) {
@@ -128,7 +128,7 @@ router.put('/:listId', asyncHandler(async (req: Request, res: Response) => {
  * Delete a todo list
  */
 router.delete('/:listId', asyncHandler(async (req: Request, res: Response) => {
-  const { listId } = req.params;
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
   
   const deleted = await TodoListService.deleteList(listId);
   

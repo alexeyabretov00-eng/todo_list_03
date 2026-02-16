@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import { TodoList, TodoListWithElements } from '../types/entities';
+import { TodoList, TodoListWithElements } from '@/types/entities';
 
 export interface CreateListDto {
   name: string;

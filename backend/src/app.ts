@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import cors from 'cors';
 import { errorHandler } from './api/middleware/errorHandler';
 import listsRouter from './api/routes/lists';
 import elementsRouter from './api/routes/elements';
@@ -6,6 +7,10 @@ import elementsRouter from './api/routes/elements';
 const app: Express = express();
 
 // Middleware
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+  credentials: true,
+}));
 app.use(express.json());
 
 // Health check endpoint
@@ -15,7 +20,7 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 app.use('/api/lists', listsRouter);
-app.use('/api/elements', elementsRouter);
+app.use('/api', elementsRouter);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

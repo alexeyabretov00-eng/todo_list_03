@@ -45,7 +45,7 @@ export class TodoElementModel {
       return [];
     }
     
-    const elements = result[0].values.map(row => ({
+    const elements = result[0].values.map((row: any[]) => ({
       id: row[0] as string,
       listId: row[1] as string,
       text: row[2] as string,
@@ -55,7 +55,7 @@ export class TodoElementModel {
     }));
     
     if (includeSubItems) {
-      return elements.map(element => ({
+      return elements.map((element: TodoElement) => ({
         ...element,
         subItems: this.getSubItems(element.id),
       }));
@@ -195,7 +195,7 @@ export class TodoElementModel {
       return [];
     }
     
-    return result[0].values.map(row => ({
+    return result[0].values.map((row: any[]) => ({
       id: row[0] as string,
       elementId: row[1] as string,
       text: row[2] as string,

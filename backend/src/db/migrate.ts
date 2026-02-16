@@ -1,9 +1,12 @@
-import db from './database';
+import { initDatabase, getDatabase } from './database';
 import fs from 'fs';
 import path from 'path';
 
-export function runMigrations(): void {
+export async function runMigrations(): Promise<void> {
   console.log('Running database migrations...');
+
+  await initDatabase();
+  const db = getDatabase();
 
   const migrationsDir = path.join(__dirname, 'migrations');
   const migrationFiles = fs.readdirSync(migrationsDir).filter(file => file.endsWith('.sql')).sort();
@@ -20,6 +23,8 @@ export function runMigrations(): void {
 }
 
 if (require.main === module) {
-  runMigrations();
-  process.exit(0);
+  runMigrations().then(() => process.exit(0)).catch(err => {
+    console.error('Migration failed:', err);
+    process.exit(1);
+  });
 }

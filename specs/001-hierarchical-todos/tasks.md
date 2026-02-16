@@ -92,62 +92,62 @@
 
 ### Backend: Lists API
 
-- [ ] T035 [P] [US1] Create TodoList model: `backend/src/models/TodoList.ts` with CRUD methods (create, findAll, findById, update, delete) per [data-model.md](./data-model.md#L15-L39)
-- [ ] T036 [P] [US1] Create TodoList service: `backend/src/services/todoListService.ts` with business logic, validation (max 20 lists, name required/max 500 chars) per [data-model.md](./data-model.md#L143-L167)
-- [ ] T037 [US1] Implement GET /api/lists: `backend/src/api/routes/lists.ts` to fetch all lists per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L11-L32)
-- [ ] T038 [US1] Implement POST /api/lists: `backend/src/api/routes/lists.ts` to create new list with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L33-L70)
-- [ ] T039 [US1] Implement GET /api/lists/:listId: `backend/src/api/routes/lists.ts` to fetch single list with optional elements per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L71-L109)
-- [ ] T040 [US1] Implement PUT /api/lists/:listId: `backend/src/api/routes/lists.ts` to update list name per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L110-L153)
-- [ ] T041 [US1] Implement DELETE /api/lists/:listId: `backend/src/api/routes/lists.ts` with CASCADE deletion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L154-L180)
+- [X] T035 [P] [US1] Create TodoList model: `backend/src/models/TodoList.ts` with CRUD methods (create, findAll, findById, update, delete) per [data-model.md](./data-model.md#L15-L39)
+- [X] T036 [P] [US1] Create TodoList service: `backend/src/services/todoListService.ts` with business logic, validation (max 20 lists, name required/max 500 chars) per [data-model.md](./data-model.md#L143-L167)
+- [X] T037 [US1] Implement GET /api/lists: `backend/src/api/routes/lists.ts` to fetch all lists per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L11-L32)
+- [X] T038 [US1] Implement POST /api/lists: `backend/src/api/routes/lists.ts` to create new list with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L33-L70)
+- [X] T039 [US1] Implement GET /api/lists/:listId: `backend/src/api/routes/lists.ts` to fetch single list with optional elements per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L71-L109)
+- [X] T040 [US1] Implement PUT /api/lists/:listId: `backend/src/api/routes/lists.ts` to update list name per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L110-L153)
+- [X] T041 [US1] Implement DELETE /api/lists/:listId: `backend/src/api/routes/lists.ts` with CASCADE deletion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L154-L180)
 
 ### Backend: Elements API
 
-- [ ] T042 [P] [US1] Create TodoElement model: `backend/src/models/TodoElement.ts` with CRUD methods, completion state management per [data-model.md](./data-model.md#L41-L84)
-- [ ] T043 [P] [US1] Create TodoElement service: `backend/src/services/todoElementService.ts` with business logic, validation (max 100 per list, text required/max 500 chars) per [data-model.md](./data-model.md#L143-L167)
-- [ ] T044 [US1] Implement GET /api/lists/:listId/elements: `backend/src/api/routes/elements.ts` to fetch all elements in list per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L210-L248)
-- [ ] T045 [US1] Implement POST /api/lists/:listId/elements: `backend/src/api/routes/elements.ts` to create element with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L249-L290)
-- [ ] T046 [US1] Implement GET /api/elements/:elementId: `backend/src/api/routes/elements.ts` to fetch single element with optional sub-items per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L291-L329)
-- [ ] T047 [US1] Implement PUT /api/elements/:elementId: `backend/src/api/routes/elements.ts` to update element text per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L330-L373)
-- [ ] T048 [US1] Implement DELETE /api/elements/:elementId: `backend/src/api/routes/elements.ts` with CASCADE deletion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L374-L400)
-- [ ] T049 [US1] Implement PUT /api/elements/:elementId/complete: `backend/src/api/routes/elements.ts` to toggle completion state per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L401-L438)
+- [X] T042 [P] [US1] Create TodoElement model: `backend/src/models/TodoElement.ts` with CRUD methods, completion state management per [data-model.md](./data-model.md#L41-L84)
+- [X] T043 [P] [US1] Create TodoElement service: `backend/src/services/todoElementService.ts` with business logic, validation (max 100 per list, text required/max 500 chars) per [data-model.md](./data-model.md#L143-L167)
+- [X] T044 [US1] Implement GET /api/lists/:listId/elements: `backend/src/api/routes/elements.ts` to fetch all elements in list per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L210-L248)
+- [X] T045 [US1] Implement POST /api/lists/:listId/elements: `backend/src/api/routes/elements.ts` to create element with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L249-L290)
+- [X] T046 [US1] Implement GET /api/elements/:elementId: `backend/src/api/routes/elements.ts` to fetch single element with optional sub-items per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L291-L329)
+- [X] T047 [US1] Implement PUT /api/elements/:elementId: `backend/src/api/routes/elements.ts` to update element text per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L330-L373)
+- [X] T048 [US1] Implement DELETE /api/elements/:elementId: `backend/src/api/routes/elements.ts` with CASCADE deletion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L374-L400)
+- [X] T049 [US1] Implement PUT /api/elements/:elementId/complete: `backend/src/api/routes/elements.ts` to toggle completion state per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L401-L438)
 
 ### Frontend: Redux State Management
 
-- [ ] T050 [P] [US1] Create lists slice: `frontend/src/store/slices/listsSlice.ts` with reducers (addList, updateList, deleteList, setLists) and async thunks (fetchLists, createList, updateList, deleteList) per [research.md](./research.md#L25-L38)
-- [ ] T051 [P] [US1] Create elements slice: `frontend/src/store/slices/elementsSlice.ts` with reducers (addElement, updateElement, deleteElement, toggleComplete, setElements) and async thunks per [research.md](./research.md#L25-L38)
-- [ ] T052 [P] [US1] Create offline queue slice: `frontend/src/store/slices/offlineQueueSlice.ts` with enqueue/dequeue actions per [research.md](./research.md#L115-L123)
+- [X] T050 [P] [US1] Create lists slice: `frontend/src/store/slices/listsSlice.ts` with reducers (addList, updateList, deleteList, setLists) and async thunks (fetchLists, createList, updateList, deleteList) per [research.md](./research.md#L25-L38)
+- [X] T051 [P] [US1] Create elements slice: `frontend/src/store/slices/elementsSlice.ts` with reducers (addElement, updateElement, deleteElement, toggleComplete, setElements) and async thunks per [research.md](./research.md#L25-L38)
+- [X] T052 [P] [US1] Create offline queue slice: `frontend/src/store/slices/offlineQueueSlice.ts` with enqueue/dequeue actions per [research.md](./research.md#L115-L123)
 
 ### Frontend: API Client Functions
 
-- [ ] T053 [P] [US1] Implement lists API client: `frontend/src/api/lists.ts` with functions (fetchLists, createList, updateList, deleteList) calling backend endpoints per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L11-L180)
-- [ ] T054 [P] [US1] Implement elements API client: `frontend/src/api/elements.ts` with functions (fetchElements, createElement, updateElement, deleteElement, toggleElementComplete) per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L210-L438)
+- [X] T053 [P] [US1] Implement lists API client: `frontend/src/api/lists.ts` with functions (fetchLists, createList, updateList, deleteList) calling backend endpoints per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L11-L180)
+- [X] T054 [P] [US1] Implement elements API client: `frontend/src/api/elements.ts` with functions (fetchElements, createElement, updateElement, deleteElement, toggleElementComplete) per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L210-L438)
 
 ### Frontend: Core Components
 
-- [ ] T055 [P] [US1] Create TodoListCard component: `frontend/src/components/TodoListCard/TodoListCard.tsx` with styled-components, display name, element count, actions per [research.md](./research.md#L19-L23)
-- [ ] T056 [P] [US1] Create TodoListCard styles: `frontend/src/components/TodoListCard/TodoListCard.styled.ts` with responsive card layout per Constitution principle
-- [ ] T057 [P] [US1] Create TodoListCard tests: `frontend/src/components/TodoListCard/__tests__/TodoListCard.test.tsx` with RTL per [research.md](./research.md#L92-L100)
-- [ ] T058 [P] [US1] Create TodoListCard stories: `frontend/src/components/TodoListCard/__stories__/TodoListCard.stories.tsx` for Storybook per [research.md](./research.md#L92-L100)
-- [ ] T059 [P] [US1] Create TodoElement component: `frontend/src/components/TodoElement/TodoElement.tsx` with checkbox, text, completion state visual distinction (strikethrough) per [spec.md](./spec.md#L32)
-- [ ] T060 [P] [US1] Create TodoElement styles: `frontend/src/components/TodoElement/TodoElement.styled.ts` with completion styles (strikethrough, checkmark, color change) per FR-025
-- [ ] T061 [P] [US1] Create TodoElement tests: `frontend/src/components/TodoElement/__tests__/TodoElement.test.tsx` testing completion toggle per [research.md](./research.md#L92-L100)
-- [ ] T062 [P] [US1] Create TodoElement stories: `frontend/src/components/TodoElement/__stories__/TodoElement.stories.tsx` with completed/uncompleted states per [research.md](./research.md#L92-L100)
-- [ ] T063 [P] [US1] Create EmptyState component: `frontend/src/components/EmptyState/EmptyState.tsx` for no lists/elements scenarios per [spec.md](./spec.md#L101-L102)
-- [ ] T064 [P] [US1] Create Button component: `frontend/src/components/Button/Button.tsx` reusable styled button with variants (primary, secondary, danger)
-- [ ] T065 [P] [US1] Create Input component: `frontend/src/components/Input/Input.tsx` reusable styled input with validation states
+- [X] T055 [P] [US1] Create TodoListCard component: `frontend/src/components/TodoListCard/TodoListCard.tsx` with styled-components, display name, element count, actions per [research.md](./research.md#L19-L23)
+- [X] T056 [P] [US1] Create TodoListCard styles: `frontend/src/components/TodoListCard/TodoListCard.styled.ts` with responsive card layout per Constitution principle
+- [X] T057 [P] [US1] Create TodoListCard tests: `frontend/src/components/TodoListCard/__tests__/TodoListCard.test.tsx` with RTL per [research.md](./research.md#L92-L100)
+- [X] T058 [P] [US1] Create TodoListCard stories: `frontend/src/components/TodoListCard/__stories__/TodoListCard.stories.tsx` for Storybook per [research.md](./research.md#L92-L100)
+- [X] T059 [P] [US1] Create TodoElement component: `frontend/src/components/TodoElement/TodoElement.tsx` with checkbox, text, completion state visual distinction (strikethrough) per [spec.md](./spec.md#L32)
+- [X] T060 [P] [US1] Create TodoElement styles: `frontend/src/components/TodoElement/TodoElement.styled.ts` with completion styles (strikethrough, checkmark, color change) per FR-025
+- [X] T061 [P] [US1] Create TodoElement tests: `frontend/src/components/TodoElement/__tests__/TodoElement.test.tsx` testing completion toggle per [research.md](./research.md#L92-L100)
+- [X] T062 [P] [US1] Create TodoElement stories: `frontend/src/components/TodoElement/__stories__/TodoElement.stories.tsx` with completed/uncompleted states per [research.md](./research.md#L92-L100)
+- [X] T063 [P] [US1] Create EmptyState component: `frontend/src/components/EmptyState/EmptyState.tsx` for no lists/elements scenarios per [spec.md](./spec.md#L101-L102)
+- [X] T064 [P] [US1] Create Button component: `frontend/src/components/Button/Button.tsx` reusable styled button with variants (primary, secondary, danger)
+- [X] T065 [P] [US1] Create Input component: `frontend/src/components/Input/Input.tsx` reusable styled input with validation states
 
 ### Frontend: Smart Containers
 
-- [ ] T066 [US1] Create App container: `frontend/src/containers/App/App.tsx` with Redux Provider, theme provider, online/offline status handling, global error boundary per [research.md](./research.md#L19-L23)
-- [ ] T067 [US1] Create TodoListsView container: `frontend/src/containers/TodoListsView/TodoListsView.tsx` fetching lists on mount, dispatching create/update/delete actions per [research.md](./research.md#L19-L23)
-- [ ] T068 [US1] Create CreateListForm container: `frontend/src/containers/CreateListForm/CreateListForm.tsx` with react-hook-form, Zod validation (required, max 500 chars) per [research.md](./research.md#L127-L138)
-- [ ] T069 [US1] Create TodoElementsList container: `frontend/src/containers/TodoElementsList/TodoElementsList.tsx` displaying elements for selected list, dispatching toggle complete per [research.md](./research.md#L19-L23)
-- [ ] T070 [US1] Create CreateElementForm container: `frontend/src/containers/CreateElementForm/CreateElementForm.tsx` with react-hook-form, Zod validation per [research.md](./research.md#L127-L138)
+- [X] T066 [US1] Create App container: `frontend/src/containers/App/App.tsx` with Redux Provider, theme provider, online/offline status handling, global error boundary per [research.md](./research.md#L19-L23)
+- [X] T067 [US1] Create TodoListsView container: `frontend/src/containers/TodoListsView/TodoListsView.tsx` fetching lists on mount, dispatching create/update/delete actions per [research.md](./research.md#L19-L23)
+- [X] T068 [US1] Create CreateListForm container: `frontend/src/containers/CreateListForm/CreateListForm.tsx` with react-hook-form, Zod validation (required, max 500 chars) per [research.md](./research.md#L127-L138)
+- [X] T069 [US1] Create TodoElementsList container: `frontend/src/containers/TodoElementsList/TodoElementsList.tsx` displaying elements for selected list, dispatching toggle complete per [research.md](./research.md#L19-L23)
+- [X] T070 [US1] Create CreateElementForm container: `frontend/src/containers/CreateElementForm/CreateElementForm.tsx` with react-hook-form, Zod validation per [research.md](./research.md#L127-L138)
 
 ### Integration & Testing
 
-- [ ] T071 [US1] Implement optimistic UI updates: Update Redux slices to optimistically apply changes before API confirmation per [research.md](./research.md#L115-L123)
-- [ ] T072 [US1] Implement offline queue processing: Add sync service to process queued operations on connectivity restore per [research.md](./research.md#L115-L123)
+- [X] T071 [US1] Implement optimistic UI updates: Update Redux slices to optimistically apply changes before API confirmation per [research.md](./research.md#L115-L123)
+- [X] T072 [US1] Implement offline queue processing: Add sync service to process queued operations on connectivity restore per [research.md](./research.md#L115-L123)
 - [ ] T073 [US1] Integrate Workbox service worker: Configure caching strategies for API responses, static assets per [research.md](./research.md#L109-L123)
 - [ ] T074 [US1] Add loading states: Implement loading indicators during API calls in containers per [research.md](./research.md#L92-L100)
 - [ ] T075 [US1] Add error handling: Display error messages for validation failures, network errors per [contracts/README.md](./contracts/README.md#L148-L171)

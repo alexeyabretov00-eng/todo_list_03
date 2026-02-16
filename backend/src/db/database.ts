@@ -51,4 +51,4 @@ export function getDatabase(): initSqlJs.Database {
   return db;
 }
 
-export default db;
+export default { initDatabase, getDatabase, saveDatabase };

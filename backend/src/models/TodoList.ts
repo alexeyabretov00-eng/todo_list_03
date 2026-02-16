@@ -38,14 +38,15 @@ export class TodoListModel {
       return [];
     }
     
-    const lists = result[0].values.map(row => ({
+    const lists = result[0].values.map((row: any[]) => ({
       id: row[0] as string,
-      name: row[1] as string,  displayOrder: row[2] as number,
+      name: row[1] as string,
+      displayOrder: row[2] as number,
       createdAt: row[3] as string,
     }));
     
     if (includeElements) {
-      return lists.map(list => ({
+      return lists.map((list: TodoList) => ({
         ...list,
         elements: this.getElements(list.id),
       }));
@@ -157,7 +158,7 @@ export class TodoListModel {
       return [];
     }
     
-    return result[0].values.map(row => ({
+    return result[0].values.map((row: any[]) => ({
       id: row[0] as string,
       listId: row[1] as string,
       text: row[2] as string,

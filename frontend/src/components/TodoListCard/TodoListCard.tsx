@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TodoList } from '../../types/entities';
+import { TodoList } from '@/types/entities';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import {
@@ -68,13 +68,14 @@ export const TodoListCard: React.FC<Props> = ({
     <ListCardContainer onClick={handleCardClick} className={className}>
       <ListCardHeader>
         {isEditing ? (
-          <Input
-            value={editName}
-            onChange={(e) => setEditName(e.target.value)}
-            fullWidth
-            maxLength={500}
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+            <Input
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              fullWidth
+              maxLength={500}
+            />
+          </div>
         ) : (
           <ListCardTitle>{list.name}</ListCardTitle>
         )}
