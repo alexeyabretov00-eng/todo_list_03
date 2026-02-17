@@ -1,39 +1,39 @@
 import React, { useState } from 'react';
 import { Input, Button } from 'antd';
-import { FormContainer, FormInput } from './CreateElementForm.styled';
+import { FormContainer, FormInput } from './CreateListFormContainer.styled';
 
 interface Props {
-  onSubmit: (text: string) => void;
+  onSubmit: (name: string) => void;
   disabled?: boolean;
 }
 
-export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false }) => {
-  const [text, setText] = useState('');
+export const CreateListFormContainer: React.FC<Props> = ({ onSubmit, disabled = false }) => {
+  const [name, setName] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
-    if (!text.trim()) {
-      setError('Element text is required');
+    if (!name.trim()) {
+      setError('List name is required');
       return;
     }
     
-    if (text.length > 500) {
-      setError('Element text cannot exceed 500 characters');
+    if (name.length > 500) {
+      setError('List name cannot exceed 500 characters');
       return;
     }
     
-    onSubmit(text.trim());
-    setText('');
+    onSubmit(name.trim());
+    setName('');
     setError('');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    setName(e.target.value);
     if (error) setError('');
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && text.trim() && !disabled) {
+    if (e.key === 'Enter' && name.trim() && !disabled) {
       handleSubmit();
     }
   };
@@ -42,17 +42,17 @@ export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false 
     <FormContainer>
       <FormInput>
         <Input
-          value={text}
+          value={name}
           onChange={handleChange}
           onKeyDown={handleKeyPress}
-          placeholder="Add a new task..."
+          placeholder="Enter list name..."
           status={error ? 'error' : ''}
           maxLength={500}
           disabled={disabled}
         />
       </FormInput>
-      <Button type="primary" onClick={handleSubmit} disabled={disabled || !text.trim()}>
-        Add Task
+      <Button type="primary" onClick={handleSubmit} disabled={disabled || !name.trim()}>
+        Create List
       </Button>
     </FormContainer>
   );

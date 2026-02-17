@@ -1,5 +1,5 @@
-export { App } from './App';
-export { CreateElementForm } from './CreateElementForm';
-export { CreateListForm } from './CreateListForm';
-export { TodoElementsList } from './TodoElementsList';
-export { TodoListsView } from './TodoListsView';
+export { AppContainer } from './AppContainer';
+export { CreateElementFormContainer } from './CreateElementFormContainer';
+export { CreateListFormContainer } from './CreateListFormContainer';
+export { TodoElementsListContainer } from './TodoElementsListContainer';
+export { TodoListsViewContainer } from './TodoListsViewContainer';

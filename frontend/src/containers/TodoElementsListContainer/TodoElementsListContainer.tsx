@@ -11,7 +11,7 @@ import {
   toggleElementComplete,
 } from '@slices';
 import { TodoElement, EmptyState } from '@components';
-import { CreateElementForm } from '../CreateElementForm';
+import { CreateElementFormContainer } from '../CreateElementFormContainer';
 import {
   ListContainer,
   ListHeader,
@@ -21,13 +21,13 @@ import {
   ErrorMessage,
   Stats,
   StatItem,
-} from './TodoElementsList.styled';
+} from './TodoElementsListContainer.styled';
 
 interface Props {
   listId: string;
 }
 
-export const TodoElementsList: React.FC<Props> = ({ listId }) => {
+export const TodoElementsListContainer: React.FC<Props> = ({ listId }) => {
   const dispatch = useAppDispatch();
   const {
     elements: listElements,
@@ -92,7 +92,7 @@ export const TodoElementsList: React.FC<Props> = ({ listId }) => {
     <ListContainer>
       <ListHeader>
         <ListTitle>{selectedList?.name || 'Todo Elements'}</ListTitle>
-        <CreateElementForm onSubmit={handleCreateElement} />
+        <CreateElementFormContainer onSubmit={handleCreateElement} />
       </ListHeader>
 
       {listElements.length > 0 && (

@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { selectIsOnline, selectPendingOperationsCount } from '@selectors';
-import { TodoListsView } from '../TodoListsView';
+import { TodoListsViewContainer } from '../TodoListsViewContainer';
 import { ErrorBoundary } from '@components';
 import { setOnlineStatus } from '@slices';
 import { syncService } from '@services';
 import {
-  AppContainer,
+  AppWrapper,
   Header,
   HeaderTitle,
   MainContent,
   StatusBar,
-} from './App.styled';
+} from './AppContainer.styled';
 
-export const App: React.FC = () => {
+export const AppContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const isOnline = useAppSelector(selectIsOnline);
   const pendingCount = useAppSelector(selectPendingOperationsCount);
@@ -40,7 +40,7 @@ export const App: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <AppContainer>
+      <AppWrapper>
         <Header>
           <HeaderTitle>Todo List Manager</HeaderTitle>
         </Header>
@@ -51,9 +51,9 @@ export const App: React.FC = () => {
           </StatusBar>
         )}
         <MainContent>
-          <TodoListsView />
+          <TodoListsViewContainer />
         </MainContent>
-      </AppContainer>
+      </AppWrapper>
     </ErrorBoundary>
   );
 };

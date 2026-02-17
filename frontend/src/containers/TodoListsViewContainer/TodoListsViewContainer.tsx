@@ -3,8 +3,8 @@ import { useAppSelector, useAppDispatch } from '@hooks';
 import { selectListsViewData } from '@selectors';
 import { fetchLists, createList, deleteList, updateList, fetchElements } from '@slices';
 import { TodoListCard, EmptyState } from '@components';
-import { CreateListForm } from '../CreateListForm';
-import { TodoElementsList } from '../TodoElementsList';
+import { CreateListFormContainer } from '../CreateListFormContainer';
+import { TodoElementsListContainer } from '../TodoElementsListContainer';
 import {
   ViewContainer,
   Section,
@@ -13,9 +13,9 @@ import {
   LoadingMessage,
   ErrorMessage,
   Divider,
-} from './TodoListsView.styled';
+} from './TodoListsViewContainer.styled';
 
-export const TodoListsView: React.FC = () => {
+export const TodoListsViewContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const { lists, loading, error, selectedListId } = useAppSelector(selectListsViewData);
   const [localError, setLocalError] = useState<string | null>(null);
@@ -67,7 +67,7 @@ export const TodoListsView: React.FC = () => {
     <ViewContainer>
       <Section>
         <SectionTitle>Create New List</SectionTitle>
-        <CreateListForm onSubmit={handleCreateList} />
+        <CreateListFormContainer onSubmit={handleCreateList} />
       </Section>
 
       {(error || localError) && (
@@ -99,7 +99,7 @@ export const TodoListsView: React.FC = () => {
       {selectedListId && (
         <>
           <Divider />
-          <TodoElementsList listId={selectedListId} />
+          <TodoElementsListContainer listId={selectedListId} />
         </>
       )}
     </ViewContainer>

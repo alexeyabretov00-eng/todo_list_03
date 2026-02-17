@@ -6,7 +6,7 @@ import { ConfigProvider } from 'antd';
 import { store } from '@store';
 import { theme } from '@theme';
 import { GlobalStyles } from '@styles';
-import { App } from '@containers';
+import { AppContainer } from '@containers';
 import { register } from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
@@ -26,7 +26,7 @@ root.render(
           }}
         >
           <GlobalStyles />
-          <App />
+          <AppContainer />
         </ConfigProvider>
       </ThemeProvider>
     </Provider>
