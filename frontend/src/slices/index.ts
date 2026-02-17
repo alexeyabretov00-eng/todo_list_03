@@ -19,6 +19,8 @@ export {
     updateList,
     deleteList,
     reorderLists,
+    selectList,
+    clearError as clearListError,
 } from './listsSlice';
 export {
     addOperation,

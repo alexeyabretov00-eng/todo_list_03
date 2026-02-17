@@ -18,7 +18,8 @@ export class TodoElementModel {
         'SELECT MAX(displayOrder) as maxOrder FROM TodoElement WHERE listId = ?',
         [listId]
       );
-      displayOrder = result[0]?.values[0]?.[0] ? Number(result[0].values[0][0]) + 1 : 0;
+      const maxOrder = result[0]?.values[0]?.[0];
+      displayOrder = maxOrder !== null && maxOrder !== undefined ? Number(maxOrder) + 1 : 0;
     }
     
     db.run(

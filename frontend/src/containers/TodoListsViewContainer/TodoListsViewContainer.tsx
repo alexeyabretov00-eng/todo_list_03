@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { getTodoListsViewContainerProps } from '@selectors';
-import { fetchLists, createList, deleteList, updateList, fetchElements } from '@slices';
+import { fetchLists, createList, deleteList, updateList, fetchElements, selectList } from '@slices';
 import { TodoListCard, EmptyState } from '@components';
 import { CreateListFormContainer } from '../CreateListFormContainer';
 import { TodoElementsListContainer } from '../TodoElementsListContainer';
@@ -34,6 +34,7 @@ export const TodoListsViewContainer: React.FC = () => {
   };
 
   const handleSelectList = (listId: string) => {
+    dispatch(selectList(listId));
     dispatch(fetchElements(listId));
   };
 
@@ -54,6 +55,10 @@ export const TodoListsViewContainer: React.FC = () => {
     try {
       setLocalError(null);
       await dispatch(deleteList(listId)).unwrap();
+      // Clear selection if deleted list was selected
+      if (selectedListId === listId) {
+        dispatch(selectList(null));
+      }
     } catch (err) {
       setLocalError(err instanceof Error ? err.message : 'Failed to delete list');
     }
