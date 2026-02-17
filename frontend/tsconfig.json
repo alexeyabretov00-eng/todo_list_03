@@ -15,16 +15,18 @@
     "isolatedModules": true,
     "baseUrl": "./src",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/containers/*": ["containers/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/utils/*": ["utils/*"],
-      "@/api/*": ["api/*"],
-      "@/store/*": ["store/*"],
-      "@/styles/*": ["styles/*"],
-      "@/assets/*": ["assets/*"],
-      "@/services/*": ["services/*"],
-      "@/types/*": ["types/*"]
+      "@components": ["components"],
+      "@containers": ["containers"],
+      "@hooks": ["hooks"],
+      "@utils": ["utils"],
+      "@api": ["api"],
+      "@store": ["store"],
+      "@slices": ["slices"],
+      "@styles": ["styles"],
+      "@theme": ["styles/theme"],
+      "@assets": ["assets"],
+      "@services": ["services"],
+      "@types": ["types"]
     }
   },
   "include": ["src"],

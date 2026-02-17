@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { TodoElement } from '@/types/entities';
-import { elementsApi, CreateElementDto, UpdateElementDto } from '@/api/elements';
+import { TodoElement } from '@types';
+import { elementsApi, CreateElementDto, UpdateElementDto } from '@api';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ElementsState {
@@ -185,4 +185,4 @@ export const {
   optimisticToggleComplete,
 } = elementsSlice.actions;
 
-export default elementsSlice.reducer;
+export const { reducer: elementsReducer } = elementsSlice;

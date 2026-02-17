@@ -1,5 +1,5 @@
 import { openDB, DBSchema, IDBPDatabase } from 'idb';
-import { OfflineOperation } from '@/types/offlineQueue';
+import { OfflineOperation } from '@types';
 
 interface TodoDB extends DBSchema {
   offlineQueue: {

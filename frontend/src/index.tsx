@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { ConfigProvider } from 'antd';
-import { store } from './store';
-import { theme } from './styles/theme';
-import { GlobalStyles } from './styles/GlobalStyles';
-import { App } from '@/containers/App';
+import { store } from '@store';
+import { theme } from '@theme';
+import { GlobalStyles } from '@styles';
+import { App } from '@containers';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(

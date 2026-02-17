@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/hooks/useAppDispatch';
+import { useAppSelector, useAppDispatch } from '@hooks';
 import { TodoListsView } from '../TodoListsView';
-import { setOnlineStatus } from '@/store/slices/offlineQueueSlice';
-import { syncService } from '@/services/syncService';
+import { setOnlineStatus } from '@slices';
+import { syncService } from '@services';
 import styled from 'styled-components';
 
 const AppContainer = styled.div`

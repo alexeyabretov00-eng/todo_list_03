@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppSelector, useAppDispatch } from '@/hooks/useAppDispatch';
+import { useAppSelector, useAppDispatch } from '@hooks';
 import {
   fetchElements,
   createElement,
   updateElement,
   deleteElement,
   toggleElementComplete,
-} from '@/store/slices/elementsSlice';
-import { TodoElement } from '@/components/TodoElement';
+} from '@slices';
+import { TodoElement, EmptyState } from '@components';
 import { CreateElementForm } from '../CreateElementForm';
-import { EmptyState } from '@/components/EmptyState';
 
 const ListContainer = styled.div`
   display: flex;

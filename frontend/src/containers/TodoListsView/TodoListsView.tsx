@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useAppSelector, useAppDispatch } from '@/hooks/useAppDispatch';
-import { fetchLists, createList, deleteList, updateList } from '@/store/slices/listsSlice';
-import { fetchElements } from '@/store/slices/elementsSlice';
-import { TodoListCard } from '@/components/TodoListCard';
+import { useAppSelector, useAppDispatch } from '@hooks';
+import { fetchLists, createList, deleteList, updateList, fetchElements } from '@slices';
+import { TodoListCard, EmptyState } from '@components';
 import { CreateListForm } from '../CreateListForm';
 import { TodoElementsList } from '../TodoElementsList';
-import { EmptyState } from '@/components/EmptyState';
 
 const ViewContainer = styled.div`
   display: flex;

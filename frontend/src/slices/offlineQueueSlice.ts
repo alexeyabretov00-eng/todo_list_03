@@ -77,4 +77,4 @@ export const {
   clearFailedOperations,
 } = offlineQueueSlice.actions;
 
-export default offlineQueueSlice.reducer;
+export const { reducer: offlineQueueReducer } = offlineQueueSlice;

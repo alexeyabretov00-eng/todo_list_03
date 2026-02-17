@@ -1,15 +1,14 @@
-import { store } from '@/store/index';
+import { store } from '@store';
 import {
   removeOperation,
   updateOperationStatus,
   incrementRetryCount,
   setProcessing,
   QueuedOperation,
-} from '@/store/slices/offlineQueueSlice';
-import { fetchLists } from '@/store/slices/listsSlice';
+  fetchLists
+} from '@slices';
 import { offlineStorage } from './offlineStorage';
-import { listsApi } from '@/api/lists';
-import { elementsApi } from '@/api/elements';
+import { listsApi, elementsApi } from '@api';
 
 const MAX_RETRY_COUNT = 3;
 

@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import listsReducer from './slices/listsSlice';
-import elementsReducer from './slices/elementsSlice';
-import offlineQueueReducer from './slices/offlineQueueSlice';
+import { listsReducer, elementsReducer, offlineQueueReducer } from '@slices';
 
 export const store = configureStore({
   reducer: {

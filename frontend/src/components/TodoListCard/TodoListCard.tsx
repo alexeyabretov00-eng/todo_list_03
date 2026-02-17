@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TodoList } from '@/types/entities';
+import { TodoList } from '@types';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import {
