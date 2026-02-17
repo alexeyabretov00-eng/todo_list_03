@@ -138,11 +138,11 @@
 
 ### Frontend: Smart Containers
 
-- [X] T066 [US1] Create App container: `frontend/src/containers/App/App.tsx` with Redux Provider, theme provider, online/offline status handling, global error boundary per [research.md](./research.md#L19-L23)
-- [X] T067 [US1] Create TodoListsView container: `frontend/src/containers/TodoListsView/TodoListsView.tsx` fetching lists on mount, dispatching create/update/delete actions per [research.md](./research.md#L19-L23)
-- [X] T068 [US1] Create CreateListForm container: `frontend/src/containers/CreateListForm/CreateListForm.tsx` with react-hook-form, Zod validation (required, max 500 chars) per [research.md](./research.md#L127-L138)
-- [X] T069 [US1] Create TodoElementsList container: `frontend/src/containers/TodoElementsList/TodoElementsList.tsx` displaying elements for selected list, dispatching toggle complete per [research.md](./research.md#L19-L23)
-- [X] T070 [US1] Create CreateElementForm container: `frontend/src/containers/CreateElementForm/CreateElementForm.tsx` with react-hook-form, Zod validation per [research.md](./research.md#L127-L138)
+- [X] T066 [US1] Create AppContainer: `frontend/src/containers/AppContainer/AppContainer.tsx` with Redux Provider, theme provider, online/offline status handling, global error boundary per [research.md](./research.md#L19-L23)
+- [X] T067 [US1] Create TodoListsViewContainer: `frontend/src/containers/TodoListsViewContainer/TodoListsViewContainer.tsx` fetching lists on mount, dispatching create/update/delete actions per [research.md](./research.md#L19-L23)
+- [X] T068 [US1] Create CreateListFormContainer: `frontend/src/containers/CreateListFormContainer/CreateListFormContainer.tsx` with react-hook-form, Zod validation (required, max 500 chars) per [research.md](./research.md#L127-L138)
+- [X] T069 [US1] Create TodoElementsListContainer: `frontend/src/containers/TodoElementsListContainer/TodoElementsListContainer.tsx` displaying elements for selected list, dispatching toggle complete per [research.md](./research.md#L19-L23)
+- [X] T070 [US1] Create CreateElementFormContainer: `frontend/src/containers/CreateElementFormContainer/CreateElementFormContainer.tsx` with react-hook-form, Zod validation per [research.md](./research.md#L127-L138)
 
 ### Integration & Testing
 

@@ -47,7 +47,7 @@ A user navigates to a todo element like "Prepare presentation" and expands it to
 
 1. **Given** an element "Prepare presentation" exists, **When** the user adds a sub-item "Research topic", **Then** the sub-item appears under the element
 2. **Given** an element has sub-items, **When** the user marks a sub-item complete, **Then** the parent element updates progress indication (e.g., "1 of 3 complete")
-3. **Given** an element has incomplete sub-items, **When** the user marks the parent element complete, **Then** the parent element and all sub-items are marked complete
+3. **Given** an element has incomplete sub-items, **When** the user marks the parent element complete, **Then** the parent element and all sub-items are marked complete (cascade applies downward only: parent→children; does not affect parent list completion)
 4. **Given** an element has no sub-items, **When** viewing the list, **Then** the element has no expand/collapse indicator
 5. **Given** an element has sub-items, **When** viewing the list, **Then** a visual indicator shows sub-items exist (e.g., expand arrow, count badge)
 
