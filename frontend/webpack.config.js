@@ -22,6 +22,15 @@ module.exports = (env, argv) => {
               loader: 'ts-loader',
               options: {
                 transpileOnly: isDevelopment,
+                getCustomTransformers: () => ({
+                  before: [
+                    require('typescript-plugin-styled-components').default({
+                      ssr: false,
+                      displayName: isDevelopment,
+                      fileName: isDevelopment,
+                    }),
+                  ],
+                }),
               },
             },
           ],

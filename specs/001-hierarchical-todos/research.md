@@ -339,7 +339,7 @@ PUT    /api/elements/:elementId/sub-items/reorder # Reorder sub-items
 ### Frontend
 
 **Core**:
-- react, react-dom (18.x)
+- react, react-dom (19.x)
 - typescript (5.x)
 - webpack, webpack-cli, webpack-dev-server (5.x)
 - ts-loader, typescript-plugin-styled-components
