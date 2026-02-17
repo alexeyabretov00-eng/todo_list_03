@@ -37,6 +37,6 @@ root.render(
 register();
 
 // Enable hot module replacement in development
-if (process.env.NODE_ENV === 'development' && module.hot) {
+if (NODE_ENV === 'development' && module.hot) {
   module.hot.accept();
 }

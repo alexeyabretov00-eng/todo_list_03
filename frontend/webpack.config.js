@@ -1,10 +1,18 @@
+const dotenv = require('dotenv');
+const { DefinePlugin } = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WorkboxPlugin } = require('workbox-webpack-plugin');
-const webpack = require('webpack');
 
-module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development';
+const getEnvs = (file = '.env') => {
+  const env = dotenv.config({ path: path.join(process.cwd(), file) }).parsed || {};
+
+  return env;
+};
+
+module.exports = () => {
+  const env = getEnvs('.env');
+  const isDevelopment = env.NODE_ENV === 'development';
 
   return {
     entry: './src/index.tsx',
@@ -57,11 +65,14 @@ module.exports = (env, argv) => {
       },
     },
     plugins: [
-      new webpack.DefinePlugin({
-        'process.env.REACT_APP_API_URL': JSON.stringify(
-          process.env.REACT_APP_API_URL || 'http://localhost:3001/api'
+      new DefinePlugin({
+        ...Object.entries(env).reduce(
+          (acc, [key, value]) => ({
+            ...acc,
+            [key]: JSON.stringify(value),
+          }),
+          {},
         ),
-        'process.env.NODE_ENV': JSON.stringify(argv.mode || 'development'),
       }),
       new HtmlWebpackPlugin({
         template: './public/index.html',

@@ -1,5 +1,3 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-
 export interface ApiError {
   error: string;
   message: string;
@@ -11,7 +9,7 @@ export class ApiClient {
   private baseUrl: string;
   private defaultHeaders: HeadersInit;
 
-  constructor(baseUrl: string = API_BASE_URL) {
+  constructor(baseUrl: string = REACT_APP_API_URL) {
     this.baseUrl = baseUrl;
     this.defaultHeaders = {
       'Content-Type': 'application/json',
