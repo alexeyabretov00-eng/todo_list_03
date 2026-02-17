@@ -126,12 +126,12 @@
 
 - [X] T055 [P] [US1] Create TodoListCard component: `frontend/src/components/TodoListCard/TodoListCard.tsx` with styled-components, display name, element count, actions per [research.md](./research.md#L19-L23)
 - [X] T056 [P] [US1] Create TodoListCard styles: `frontend/src/components/TodoListCard/TodoListCard.styled.ts` with responsive card layout per Constitution principle
-- [X] T057 [P] [US1] Create TodoListCard tests: `frontend/src/components/TodoListCard/__tests__/TodoListCard.test.tsx` with RTL per [research.md](./research.md#L92-L100)
-- [X] T058 [P] [US1] Create TodoListCard stories: `frontend/src/components/TodoListCard/__stories__/TodoListCard.stories.tsx` for Storybook per [research.md](./research.md#L92-L100)
+- [ ] T057 [P] [US1] Create TodoListCard tests: `frontend/src/components/TodoListCard/__tests__/TodoListCard.test.tsx` with RTL per [research.md](./research.md#L92-L100)
+- [ ] T058 [P] [US1] Create TodoListCard stories: `frontend/src/components/TodoListCard/__stories__/TodoListCard.stories.tsx` for Storybook per [research.md](./research.md#L92-L100)
 - [X] T059 [P] [US1] Create TodoElement component: `frontend/src/components/TodoElement/TodoElement.tsx` with checkbox, text, completion state visual distinction (strikethrough) per [spec.md](./spec.md#L32)
 - [X] T060 [P] [US1] Create TodoElement styles: `frontend/src/components/TodoElement/TodoElement.styled.ts` with completion styles (strikethrough, checkmark, color change) per FR-025
-- [X] T061 [P] [US1] Create TodoElement tests: `frontend/src/components/TodoElement/__tests__/TodoElement.test.tsx` testing completion toggle per [research.md](./research.md#L92-L100)
-- [X] T062 [P] [US1] Create TodoElement stories: `frontend/src/components/TodoElement/__stories__/TodoElement.stories.tsx` with completed/uncompleted states per [research.md](./research.md#L92-L100)
+- [ ] T061 [P] [US1] Create TodoElement tests: `frontend/src/components/TodoElement/__tests__/TodoElement.test.tsx` testing completion toggle per [research.md](./research.md#L92-L100)
+- [ ] T062 [P] [US1] Create TodoElement stories: `frontend/src/components/TodoElement/__stories__/TodoElement.stories.tsx` with completed/uncompleted states per [research.md](./research.md#L92-L100)
 - [X] T063 [P] [US1] Create EmptyState component: `frontend/src/components/EmptyState/EmptyState.tsx` for no lists/elements scenarios per [spec.md](./spec.md#L101-L102)
 - [X] T064 [P] [US1] Create Button component: `frontend/src/components/Button/Button.tsx` reusable styled button with variants (primary, secondary, danger)
 - [X] T065 [P] [US1] Create Input component: `frontend/src/components/Input/Input.tsx` reusable styled input with validation states
