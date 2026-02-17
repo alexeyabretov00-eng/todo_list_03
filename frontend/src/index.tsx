@@ -7,7 +7,7 @@ import { store } from '@store';
 import { theme } from '@theme';
 import { GlobalStyles } from '@styles';
 import { App } from '@containers';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { register } from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -34,7 +34,7 @@ root.render(
 );
 
 // Register service worker for PWA functionality
-serviceWorkerRegistration.register();
+register();
 
 // Enable hot module replacement in development
 if (process.env.NODE_ENV === 'development' && module.hot) {

@@ -107,6 +107,10 @@ Environment-specific settings MUST be managed via `.env` files. Example: `API_PA
 - **Variables/Functions**: lowerCamelCase, e.g., `handleSubmit`, `todoItems`
 - **Files**: Match component/container name exactly, styled files include `.styled.` in name
 
+### Import/Export Conventions
+- **Named Imports/Exports**: MUST use named imports and exports exclusively. Wildcard imports (`import * as`) and wildcard exports (`export * from`) are FORBIDDEN.
+- **Rationale**: Named imports/exports provide explicit dependencies, improve tree-shaking, enable better IDE autocompletion, and make refactoring safer by catching breaking changes at compile time.
+
 ### Data Persistence Rules
 - **Primary Data**: MUST be fetched from API, MUST NOT persist to localStorage
 - **Offline Queue**: ONLY persistent data allowed is the sync queue for pending operations
