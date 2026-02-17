@@ -33,7 +33,9 @@ export const TodoElementsListContainer: React.FC = () => {
     loading,
     error,
   } = useAppSelector(getTodoElementsListContainerProps);
+  const { items: subItems } = useAppSelector((state) => state.subItems);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [expandedElementIds, setExpandedElementIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (listId) {
@@ -83,6 +85,16 @@ export const TodoElementsListContainer: React.FC = () => {
     }
   };
 
+  const handleToggleExpand = (elementId: string) => {
+    const newExpandedIds = new Set(expandedElementIds);
+    if (newExpandedIds.has(elementId)) {
+      newExpandedIds.delete(elementId);
+    } else {
+      newExpandedIds.add(elementId);
+    }
+    setExpandedElementIds(newExpandedIds);
+  };
+
   if (loading && listElements.length === 0) {
     return <LoadingMessage>Loading elements...</LoadingMessage>;
   }
@@ -111,15 +123,24 @@ export const TodoElementsListContainer: React.FC = () => {
         />
       ) : (
         <ElementsContainer>
-          {listElements.map((element) => (
+          {listElements.map((element) => {
+            const elementSubItems = subItems.filter((si) => si.elementId === element.id);
+            const completedSubItems = elementSubItems.filter((si) => si.isCompleted).length;
+            
+            return (
             <TodoElement
               key={element.id}
               element={element}
+              subItemCount={elementSubItems.length}
+              completedSubItemCount={completedSubItems}
               onToggleComplete={(id: string, isCompleted: boolean) => handleToggleComplete(element.id, isCompleted)}
               onEdit={(id: string, text: string) => handleUpdateElement(element.id, text)}
               onDelete={(id: string) => handleDeleteElement(element.id)}
+              onToggleExpand={handleToggleExpand}
+              isExpanded={expandedElementIds.has(element.id)}
             />
-          ))}
+          );
+          })}
         </ElementsContainer>
       )}
     </ListContainer>

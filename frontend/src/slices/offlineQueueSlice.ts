@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export interface QueuedOperation {
   id: string;
-  type: 'CREATE_LIST' | 'UPDATE_LIST' | 'DELETE_LIST' | 'CREATE_ELEMENT' | 'UPDATE_ELEMENT' | 'DELETE_ELEMENT' | 'TOGGLE_ELEMENT';
+  type: 'CREATE_LIST' | 'UPDATE_LIST' | 'DELETE_LIST' | 'CREATE_ELEMENT' | 'UPDATE_ELEMENT' | 'DELETE_ELEMENT' | 'TOGGLE_ELEMENT' | 'CREATE_SUBITEM' | 'UPDATE_SUBITEM' | 'DELETE_SUBITEM' | 'TOGGLE_SUBITEM';
   payload: any;
   timestamp: string;
   retryCount: number;

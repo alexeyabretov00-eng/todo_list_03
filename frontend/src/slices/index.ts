@@ -34,3 +34,17 @@ export {
     type QueuedOperation,
     offlineQueueReducer
 } from './offlineQueueSlice';
+export {
+    clearError as clearSubItemError,
+    clearSubItems,
+    createSubItem,
+    deleteSubItem,
+    fetchSubItems,
+    optimisticCreateSubItem,
+    optimisticDeleteSubItem,
+    optimisticToggleComplete as optimisticToggleSubItem,
+    optimisticUpdateSubItem,
+    toggleSubItemComplete,
+    updateSubItem,
+    subItemsReducer,
+} from './subItemsSlice';

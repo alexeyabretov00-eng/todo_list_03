@@ -1,5 +1,6 @@
 import { TodoElementModel } from '../models/TodoElement';
 import { TodoListModel } from '../models/TodoList';
+import { SubItemModel } from '../models/SubItem';
 import { TodoElement, TodoElementWithSubItems } from '../types/entities';
 
 // Validation constraints from data-model.md
@@ -92,8 +93,19 @@ export class TodoElementService {
   /**
    * Toggle element completion
    */
+  /**
+   * Toggle element completion status
+   * When marking as complete, automatically completes all sub-items (cascade)
+   */
   static async toggleElementComplete(id: string, isCompleted: boolean): Promise<TodoElement | null> {
-    return TodoElementModel.toggleComplete(id, isCompleted);
+    const element = TodoElementModel.toggleComplete(id, isCompleted);
+    
+    // If marking as complete, cascade completion to all sub-items
+    if (isCompleted && element) {
+      SubItemModel.completeAllByElementId(id);
+    }
+    
+    return element;
   }
 
   /**

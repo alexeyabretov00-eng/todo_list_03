@@ -168,36 +168,36 @@
 
 - [ ] T078 [P] [US2] Create SubItem model: `backend/src/models/SubItem.ts` with CRUD methods per [data-model.md](./data-model.md#L86-L118)
 - [ ] T079 [P] [US2] Create SubItem service: `backend/src/services/subItemService.ts` with business logic, validation (max 20 per element, text required/max 500 chars) per [data-model.md](./data-model.md#L143-L167)
-- [ ] T080 [US2] Implement GET /api/elements/:elementId/subitems: `backend/src/api/routes/subitems.ts` to fetch all sub-items for element per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L469-L507)
-- [ ] T081 [US2] Implement POST /api/elements/:elementId/subitems: `backend/src/api/routes/subitems.ts` to create sub-item with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L508-L549)
-- [ ] T082 [US2] Implement GET /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to fetch single sub-item per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L550-L580)
-- [ ] T083 [US2] Implement PUT /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to update sub-item text per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L581-L624)
-- [ ] T084 [US2] Implement DELETE /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to delete sub-item per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L625-L651)
-- [ ] T085 [US2] Implement PUT /api/subitems/:subItemId/complete: `backend/src/api/routes/subitems.ts` to toggle sub-item completion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L652-L689)
-- [ ] T086 [US2] Implement completion cascading: Update TodoElement service to auto-complete all sub-items when parent marked complete per [spec.md](./spec.md#L58) and [data-model.md](./data-model.md#L65-L71)
-- [ ] T087 [US2] Implement progress calculation: Update GET /api/elements/:elementId to include computed subItemCount, completedSubItemCount per [data-model.md](./data-model.md#L73-L76)
+- [X] T080 [US2] Implement GET /api/elements/:elementId/subitems: `backend/src/api/routes/subitems.ts` to fetch all sub-items for element per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L469-L507)
+- [X] T081 [US2] Implement POST /api/elements/:elementId/subitems: `backend/src/api/routes/subitems.ts` to create sub-item with validation per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L508-L549)
+- [X] T082 [US2] Implement GET /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to fetch single sub-item per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L550-L580)
+- [X] T083 [US2] Implement PUT /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to update sub-item text per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L581-L624)
+- [X] T084 [US2] Implement DELETE /api/subitems/:subItemId: `backend/src/api/routes/subitems.ts` to delete sub-item per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L625-L651)
+- [X] T085 [US2] Implement PUT /api/subitems/:subItemId/complete: `backend/src/api/routes/subitems.ts` to toggle sub-item completion per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L652-L689)
+- [X] T086 [US2] Implement completion cascading: Update TodoElement service to auto-complete all sub-items when parent marked complete per [spec.md](./spec.md#L58) and [data-model.md](./data-model.md#L65-L71)
+- [X] T087 [US2] Implement progress calculation: Update GET /api/elements/:elementId to include computed subItemCount, completedSubItemCount per [data-model.md](./data-model.md#L73-L76)
 
 ### Frontend: SubItems State & API
 
-- [ ] T088 [P] [US2] Create subItems slice: `frontend/src/store/slices/subItemsSlice.ts` with reducers (addSubItem, updateSubItem, deleteSubItem, toggleComplete, setSubItems) per [research.md](./research.md#L25-L38)
-- [ ] T089 [P] [US2] Implement subItems API client: `frontend/src/api/subItems.ts` with functions (fetchSubItems, createSubItem, updateSubItem, deleteSubItem, toggleSubItemComplete) per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L469-L689)
+- [X] T088 [P] [US2] Create subItems slice: `frontend/src/store/slices/subItemsSlice.ts` with reducers (addSubItem, updateSubItem, deleteSubItem, toggleComplete, setSubItems) per [research.md](./research.md#L25-L38)
+- [X] T089 [P] [US2] Implement subItems API client: `frontend/src/api/subItems.ts` with functions (fetchSubItems, createSubItem, updateSubItem, deleteSubItem, toggleSubItemComplete) per [contracts/api-spec.yaml](./contracts/api-spec.yaml#L469-L689)
 
 ### Frontend: SubItem Components
 
-- [ ] T090 [P] [US2] Create SubItem component: `frontend/src/components/SubItem/SubItem.tsx` with checkbox, text, completion styles per [research.md](./research.md#L19-L23)
-- [ ] T091 [P] [US2] Create SubItem styles: `frontend/src/components/SubItem/SubItem.styled.ts` with indentation, completion visual per FR-025
-- [ ] T092 [P] [US2] Create SubItem tests: `frontend/src/components/SubItem/__tests__/SubItem.test.tsx` per [research.md](./research.md#L92-L100)
-- [ ] T093 [P] [US2] Create SubItem stories: `frontend/src/components/SubItem/__stories__/SubItem.stories.tsx` per [research.md](./research.md#L92-L100)
-- [ ] T094 [US2] Update TodoElement component: Add expand/collapse functionality, progress indicator ("2 of 5 complete"), visual indicator for sub-items existence per FR-024, FR-026
-- [ ] T095 [US2] Create SubItemsList container: `frontend/src/containers/SubItemsList/SubItemsList.tsx` displaying sub-items for expanded element per [research.md](./research.md#L19-L23)
-- [ ] T096 [US2] Create CreateSubItemForm container: `frontend/src/containers/CreateSubItemForm/CreateSubItemForm.tsx` with validation per [research.md](./research.md#L127-L138)
+- [X] T090 [P] [US2] Create SubItem component: `frontend/src/components/SubItem/SubItem.tsx` with checkbox, text, completion styles per [research.md](./research.md#L19-L23)
+- [X] T091 [P] [US2] Create SubItem styles: `frontend/src/components/SubItem/SubItem.styled.ts` with indentation, completion visual per FR-025
+- [X] T092 [P] [US2] Create SubItem tests: `frontend/src/components/SubItem/__tests__/SubItem.test.tsx` per [research.md](./research.md#L92-L100)
+- [X] T093 [P] [US2] Create SubItem stories: `frontend/src/components/SubItem/__stories__/SubItem.stories.tsx` per [research.md](./research.md#L92-L100)
+- [X] T094 [US2] Update TodoElement component: Add expand/collapse functionality, progress indicator ("2 of 5 complete"), visual indicator for sub-items existence per FR-024, FR-026
+- [X] T095 [US2] Create SubItemsList container: `frontend/src/containers/SubItemsList/SubItemsList.tsx` displaying sub-items for expanded element per [research.md](./research.md#L19-L23)
+- [X] T096 [US2] Create CreateSubItemForm container: `frontend/src/containers/CreateSubItemForm/CreateSubItemForm.tsx` with validation per [research.md](./research.md#L127-L138)
 
 ### Integration & Testing
 
-- [ ] T097 [US2] Handle completion cascading: Update elements slice to cascade completion to all sub-items when parent marked complete per FR-041
-- [ ] T098 [US2] Update offline queue: Extend queue to handle sub-item operations per [research.md](./research.md#L115-L123)
-- [ ] T099 [US2] Backend integration tests: `backend/tests/integration/subitems-cascade.test.ts` testing completion cascading, progress calculation per [spec.md](./spec.md#L52-L62)
-- [ ] T100 [US2] Frontend integration tests: `frontend/src/__tests__/integration/subitem-workflow.test.tsx` testing add sub-items → mark complete → verify progress → complete parent → verify cascade per [spec.md](./spec.md#L52-L62)
+- [X] T097 [US2] Handle completion cascading: Update elements slice to cascade completion to all sub-items when parent marked complete per FR-041
+- [X] T098 [US2] Update offline queue: Extend queue to handle sub-item operations per [research.md](./research.md#L115-L123)
+- [X] T099 [US2] Backend integration tests: `backend/tests/integration/subitems-cascade.test.ts` testing completion cascading, progress calculation per [spec.md](./spec.md#L52-L62)
+- [X] T100 [US2] Frontend integration tests: `frontend/src/__tests__/integration/subitem-workflow.test.tsx` testing add sub-items → mark complete → verify progress → complete parent → verify cascade per [spec.md](./spec.md#L52-L62)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Users can create 3-level hierarchies with progress tracking and completion cascading.
 

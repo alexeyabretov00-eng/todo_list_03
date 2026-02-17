@@ -13,6 +13,8 @@ export interface TodoElement {
   isCompleted: boolean;
   displayOrder: number;
   createdAt: string;
+  subItemCount?: number;
+  completedSubItemCount?: number;
 }
 
 export interface SubItem {

@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { listsReducer, elementsReducer, offlineQueueReducer } from '@slices';
+import { listsReducer, elementsReducer, offlineQueueReducer, subItemsReducer } from '@slices';
 
 export const store = configureStore({
   reducer: {
     lists: listsReducer,
     elements: elementsReducer,
+    subItems: subItemsReducer,
     offlineQueue: offlineQueueReducer,
   },
   middleware: (getDefaultMiddleware) =>
