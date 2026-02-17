@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { TodoListService } from '../../services/TodoListService';
+import { TodoElementService } from '../../services/TodoElementService';
 import { asyncHandler } from '../middleware/errorHandler';
 
 const router = Router();
@@ -142,6 +143,79 @@ router.delete('/:listId', asyncHandler(async (req: Request, res: Response) => {
   }
   
   res.status(204).send();
+}));
+
+/**
+ * GET /api/lists/:listId/elements
+ * Get all elements for a list
+ */
+router.get('/:listId/elements', asyncHandler(async (req: Request, res: Response) => {
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
+  const includeSubItems = req.query.includeSubItems === 'true';
+  
+  try {
+    const elements = await TodoElementService.getElementsByListId(listId, includeSubItems);
+    res.json(elements);
+  } catch (error) {
+    if (error instanceof Error && error.message === 'List not found') {
+      res.status(404).json({
+        error: 'NOT_FOUND',
+        code: 'NOT_FOUND',
+        message: error.message,
+      });
+      return;
+    }
+    throw error;
+  }
+}));
+
+/**
+ * POST /api/lists/:listId/elements
+ * Create a new element in a list
+ */
+router.post('/:listId/elements', asyncHandler(async (req: Request, res: Response) => {
+  const listId = (Array.isArray(req.params.listId) ? req.params.listId[0] : req.params.listId) as string;
+  const { text } = req.body;
+  
+  if (!text) {
+    res.status(400).json({
+      error: 'VALIDATION_ERROR',
+      code: 'VALIDATION_ERROR',
+      message: 'Text is required',
+    });
+    return;
+  }
+  
+  try {
+    const element = await TodoElementService.createElement(listId, text);
+    res.status(201).json(element);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === 'List not found') {
+        res.status(404).json({
+          error: 'NOT_FOUND',
+          code: 'NOT_FOUND',
+          message: error.message,
+        });
+        return;
+      }
+      if (error.message.includes('Maximum')) {
+        res.status(400).json({
+          error: 'LIMIT_EXCEEDED',
+          code: 'LIMIT_EXCEEDED',
+          message: error.message,
+        });
+        return;
+      }
+      res.status(400).json({
+        error: 'VALIDATION_ERROR',
+        code: 'VALIDATION_ERROR',
+        message: error.message,
+      });
+      return;
+    }
+    throw error;
+  }
 }));
 
 /**

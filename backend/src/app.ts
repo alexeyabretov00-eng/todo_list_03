@@ -15,7 +15,7 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 app.use('/api/lists', listsRouter);
-app.use('/api', elementsRouter);
+app.use('/api/elements', elementsRouter);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);
