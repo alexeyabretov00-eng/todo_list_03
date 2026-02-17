@@ -43,6 +43,7 @@ module.exports = (env, argv) => {
         '@api': path.resolve(__dirname, 'src/api'),
         '@store': path.resolve(__dirname, 'src/store'),
         '@slices': path.resolve(__dirname, 'src/slices'),
+        '@selectors': path.resolve(__dirname, 'src/selectors'),
         '@styles': path.resolve(__dirname, 'src/styles'),
         '@theme': path.resolve(__dirname, 'src/styles/theme'),
         '@assets': path.resolve(__dirname, 'src/assets'),

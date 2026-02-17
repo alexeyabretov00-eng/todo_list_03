@@ -22,6 +22,7 @@
       "@api": ["api"],
       "@store": ["store"],
       "@slices": ["slices"],
+      "@selectors": ["selectors"],
       "@styles": ["styles"],
       "@theme": ["styles/theme"],
       "@assets": ["assets"],

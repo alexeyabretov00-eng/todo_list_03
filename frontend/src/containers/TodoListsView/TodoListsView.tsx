@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
+import { selectListsViewData } from '@selectors';
 import { fetchLists, createList, deleteList, updateList, fetchElements } from '@slices';
 import { TodoListCard, EmptyState } from '@components';
 import { CreateListForm } from '../CreateListForm';
@@ -16,7 +17,7 @@ import {
 
 export const TodoListsView: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { items: lists, loading, error, selectedListId } = useAppSelector((state) => state.lists);
+  const { lists, loading, error, selectedListId } = useAppSelector(selectListsViewData);
   const [localError, setLocalError] = useState<string | null>(null);
 
   useEffect(() => {

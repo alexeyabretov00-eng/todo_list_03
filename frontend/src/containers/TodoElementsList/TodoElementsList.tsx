@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import {
+  selectListElementsWithStats,
+} from '@selectors';
+import {
   fetchElements,
   createElement,
   updateElement,
@@ -26,13 +29,14 @@ interface Props {
 
 export const TodoElementsList: React.FC<Props> = ({ listId }) => {
   const dispatch = useAppDispatch();
-  const { items: elements, loading, error } = useAppSelector((state) => state.elements);
-  const lists = useAppSelector((state) => state.lists.items);
+  const {
+    elements: listElements,
+    selectedList,
+    completedCount,
+    loading,
+    error,
+  } = useAppSelector(selectListElementsWithStats(listId));
   const [localError, setLocalError] = useState<string | null>(null);
-
-  const selectedList = lists.find((list) => list.id === listId);
-  const listElements = elements.filter((el) => el.listId === listId);
-  const completedCount = listElements.filter((el) => el.isCompleted).length;
 
   useEffect(() => {
     if (listId) {
