@@ -14,7 +14,8 @@ export class TodoListModel {
     // If display not specified, use max + 1
     if (displayOrder === undefined) {
       const result = db.exec('SELECT MAX(displayOrder) as maxOrder FROM TodoList');
-      displayOrder = result[0]?.values[0]?.[0] ? Number(result[0].values[0][0]) + 1 : 0;
+      const maxOrder = result[0]?.values[0]?.[0];
+      displayOrder = maxOrder !== null && maxOrder !== undefined ? Number(maxOrder) + 1 : 0;
     }
     
     db.run(
