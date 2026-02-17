@@ -36,18 +36,3 @@ export const StatusBar = styled.div<{ isOnline: boolean }>`
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
 `;
-
-export const ErrorBoundaryContainer = styled.div`
-  padding: ${({ theme }) => theme.spacing.xl};
-  text-align: center;
-`;
-
-export const ErrorTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.error};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-`;
-
-export const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;

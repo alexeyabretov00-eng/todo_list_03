@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { TodoListsView } from '../TodoListsView';
+import { ErrorBoundary } from '@components';
 import { setOnlineStatus } from '@slices';
 import { syncService } from '@services';
 import {
@@ -9,49 +10,7 @@ import {
   HeaderTitle,
   MainContent,
   StatusBar,
-  ErrorBoundaryContainer,
-  ErrorTitle,
-  ErrorMessage,
 } from './App.styled';
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-  error?: Error;
-}
-
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  ErrorBoundaryState
-> {
-  constructor(props: { children: React.ReactNode }) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Error caught by boundary:', error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <ErrorBoundaryContainer>
-          <ErrorTitle>Something went wrong</ErrorTitle>
-          <ErrorMessage>
-            {this.state.error?.message || 'An unexpected error occurred'}
-          </ErrorMessage>
-          <button onClick={() => window.location.reload()}>Reload Page</button>
-        </ErrorBoundaryContainer>
-      );
-    }
-
-    return this.props.children;
-  }
-}
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
