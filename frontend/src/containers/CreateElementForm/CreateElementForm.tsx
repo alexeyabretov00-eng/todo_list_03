@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Input, Button } from '@components';
-
-const FormContainer = styled.form`
-  display: flex;
-  gap: 12px;
-  align-items: flex-end;
-  margin-bottom: 24px;
-`;
-
-const FormInput = styled.div`
-  flex: 1;
-`;
+import { FormContainer, FormInput } from './CreateElementForm.styled';
 
 interface Props {
   onSubmit: (text: string) => void;

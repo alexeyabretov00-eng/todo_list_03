@@ -1,57 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { fetchLists, createList, deleteList, updateList, fetchElements } from '@slices';
 import { TodoListCard, EmptyState } from '@components';
 import { CreateListForm } from '../CreateListForm';
 import { TodoElementsList } from '../TodoElementsList';
-
-const ViewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.xl};
-`;
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.typography.fontSize.xl};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.text};
-  margin: 0;
-`;
-
-const ListsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const LoadingMessage = styled.div`
-  text-align: center;
-  padding: ${({ theme }) => theme.spacing.xl};
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font-size: ${({ theme }) => theme.typography.fontSize.lg};
-`;
-
-const ErrorMessage = styled.div`
-  text-align: center;
-  padding: ${({ theme }) => theme.spacing.xl};
-  color: ${({ theme }) => theme.colors.error};
-  font-size: ${({ theme }) => theme.typography.fontSize.lg};
-  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-`;
-
-const Divider = styled.hr`
-  border: none;
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-  margin: ${({ theme }) => theme.spacing.lg} 0;
-`;
+import {
+  ViewContainer,
+  Section,
+  SectionTitle,
+  ListsGrid,
+  LoadingMessage,
+  ErrorMessage,
+  Divider,
+} from './TodoListsView.styled';
 
 export const TodoListsView: React.FC = () => {
   const dispatch = useAppDispatch();
