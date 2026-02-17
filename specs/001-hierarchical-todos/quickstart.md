@@ -299,11 +299,8 @@ module.exports = (env, argv) => {
 #### Create Environment File (frontend/.env)
 
 ```env
-# API Configuration
-REACT_APP_API_URL=http://localhost:3001/api
-
-# Feature Flags (optional)
-REACT_APP_ENABLE_DEVTOOLS=true
+REACT_APP_API_URL=/api
+NODE_ENV=development
 ```
 
 ### 4. Linting and Formatting Setup
