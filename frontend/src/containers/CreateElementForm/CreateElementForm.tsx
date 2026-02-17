@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button } from '@components';
+import { Input, Button } from 'antd';
 import { FormContainer, FormInput } from './CreateElementForm.styled';
 
 interface Props {
@@ -46,13 +46,12 @@ export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false 
           onChange={handleChange}
           onKeyDown={handleKeyPress}
           placeholder="Add a new task..."
-          error={error}
-          fullWidth
+          status={error ? 'error' : ''}
           maxLength={500}
           disabled={disabled}
         />
       </FormInput>
-      <Button onClick={handleSubmit} disabled={disabled || !text.trim()}>
+      <Button type="primary" onClick={handleSubmit} disabled={disabled || !text.trim()}>
         Add Task
       </Button>
     </FormContainer>

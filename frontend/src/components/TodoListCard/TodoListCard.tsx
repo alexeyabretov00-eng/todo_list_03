@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Input, Button } from 'antd';
 import { TodoList } from '@types';
-import { Button } from '../Button';
-import { Input } from '../Input';
 import {
   ListCardContainer,
   ListCardHeader,
@@ -72,7 +71,6 @@ export const TodoListCard: React.FC<Props> = ({
             <Input
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
-              fullWidth
               maxLength={500}
             />
           </div>
@@ -82,19 +80,19 @@ export const TodoListCard: React.FC<Props> = ({
         <ListCardActions onClick={(e) => e.stopPropagation()}>
           {isEditing ? (
             <>
-              <Button variant="primary" size="small" onClick={handleSave}>
+              <Button type="primary" size="small" onClick={handleSave}>
                 Save
               </Button>
-              <Button variant="ghost" size="small" onClick={handleCancel}>
+              <Button size="small" onClick={handleCancel}>
                 Cancel
               </Button>
             </>
           ) : (
             <>
-              <Button variant="ghost" size="small" onClick={handleEdit}>
+              <Button size="small" onClick={handleEdit}>
                 Edit
               </Button>
-              <Button variant="danger" size="small" onClick={handleDelete}>
+              <Button danger size="small" onClick={handleDelete}>
                 Delete
               </Button>
             </>

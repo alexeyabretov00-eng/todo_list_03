@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Input, Button } from 'antd';
 import { TodoElement as TodoElementType } from '@types';
-import { Button } from '../Button';
-import { Input } from '../Input';
 import {
   ElementContainer,
   ElementHeader,
@@ -72,7 +71,6 @@ export const TodoElement: React.FC<Props> = ({
             <Input
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
-              fullWidth
               maxLength={500}
             />
           ) : (
@@ -87,19 +85,19 @@ export const TodoElement: React.FC<Props> = ({
         <ElementActions>
           {isEditing ? (
             <>
-              <Button variant="primary" size="small" onClick={handleSave}>
+              <Button type="primary" size="small" onClick={handleSave}>
                 Save
               </Button>
-              <Button variant="ghost" size="small" onClick={handleCancel}>
+              <Button size="small" onClick={handleCancel}>
                 Cancel
               </Button>
             </>
           ) : (
             <>
-              <Button variant="ghost" size="small" onClick={handleEdit}>
+              <Button size="small" onClick={handleEdit}>
                 Edit
               </Button>
-              <Button variant="danger" size="small" onClick={handleDelete}>
+              <Button danger size="small" onClick={handleDelete}>
                 Delete
               </Button>
             </>
