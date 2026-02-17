@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import {
-  selectListElementsWithStats,
+  getTodoElementsListContainerProps,
 } from '@selectors';
 import {
   fetchElements,
@@ -35,7 +35,7 @@ export const TodoElementsListContainer: React.FC<Props> = ({ listId }) => {
     completedCount,
     loading,
     error,
-  } = useAppSelector(selectListElementsWithStats(listId));
+  } = useAppSelector(getTodoElementsListContainerProps(listId));
   const [localError, setLocalError] = useState<string | null>(null);
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@hooks';
-import { selectIsOnline, selectPendingOperationsCount } from '@selectors';
+import { selectIsOnline, getAppContainerProps } from '@selectors';
 import { TodoListsViewContainer } from '../TodoListsViewContainer';
 import { ErrorBoundary } from '@components';
 import { setOnlineStatus } from '@slices';
@@ -16,7 +16,7 @@ import {
 export const AppContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const isOnline = useAppSelector(selectIsOnline);
-  const pendingCount = useAppSelector(selectPendingOperationsCount);
+  const pendingCount = useAppSelector(getAppContainerProps);
 
   useEffect(() => {
     // Initialize sync service

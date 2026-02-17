@@ -15,10 +15,7 @@ export {
 } from './base';
 
 export {
-  selectListElements,
-  selectSelectedList,
-  selectListCompletedCount,
-  selectListElementsWithStats,
-  selectListsViewData,
-  selectPendingOperationsCount,
+  getTodoElementsListContainerProps,
+  getTodoListsViewContainerProps,
+  getAppContainerProps,
 } from './containers';

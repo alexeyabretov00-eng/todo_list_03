@@ -1,13 +1,22 @@
 <!--
-Sync Impact Report - Version 1.1.0 (React 19 Upgrade)
+Sync Impact Report - Version 1.1.2 (Container Selector Naming Conventions)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Version Change: 1.0.0 → 1.1.0
-Type: Minor Amendment (Technology Stack Update)
+Version Change: 1.1.1 → 1.1.2
+Type: Patch (Naming Convention Addition)
 
-Changes in v1.1.0:
+Changes in v1.1.2:
+  ✓ Added Container Selector Naming Convention: get + ContainerName + Props
+  ✓ Rationale: Consistent naming improves code discoverability and maintainability
+  ✓ Pattern: getAppContainerProps, getTodoListsViewContainerProps, etc.
+  ✓ Implementation: All container selectors renamed following the new pattern
+
+Previous Changes (v1.1.1):
+  ✓ Clarified Naming Conventions: Added mandatory "Container" suffix rule
+  ✓ Applied to: Folder names, file names, and component exports
+
+Previous Changes (v1.1.0):
   ✓ Updated Frontend Framework: React 18.x → React 19.x
   ✓ Rationale: React 19 compiler optimizations, improved concurrent features
-  ✓ Ecosystem verified: Redux Toolkit, styled-components, testing libraries compatible
 
 Principles Unchanged:
   ✓ I. Single-User Architecture
@@ -16,19 +25,15 @@ Principles Unchanged:
   ✓ IV. Test-First Quality (NON-NEGOTIABLE)
   ✓ V. Component Isolation & Type Safety
 
-Related Document Updates:
-  ✓ plan.md - Language/Version updated to React 19.x
-  ✓ research.md - Frontend Framework decision updated with React 19 rationale
-  ✓ quickstart.md - React 19 installation instructions
-  ✓ tasks.md - T003 updated to initialize React 19
-
-Impact Analysis:
-  ✓ Breaking Changes: None (React 19 maintains backward compatibility for our use cases)
-  ✓ Dependency Updates: All specified libraries support React 19
-  ✓ Migration Path: Install react@19 react-dom@19 instead of latest
+Impact Analysis (v1.1.2):
+  ✓ Breaking Changes: None (internal refactoring)
+  ✓ Selector Renames: selectListElementsWithStats → getTodoElementsListContainerProps
+                      selectListsViewData → getTodoListsViewContainerProps
+                      selectPendingOperationsCount → getAppContainerProps
+  ✓ Migration Path: N/A (all usages updated)
 
 Commit Message:
-  docs: amend constitution v1.1.0 (upgrade to React 19.x)
+  docs: amend constitution v1.1.2 (add container selector naming convention)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 -->
 
@@ -103,7 +108,16 @@ Environment-specific settings MUST be managed via `.env` files. Example: `API_PA
 - **No Routing**: Single-page application without routing library
 
 ### Naming Conventions
-- **Frontend Components/Containers**: UpperCamelCase (PascalCase), e.g., `TodoList`, `AddItemContainer`
+- **Frontend Components**: UpperCamelCase (PascalCase), e.g., `TodoList`, `EmptyState`
+- **Frontend Containers**: UpperCamelCase (PascalCase) with MANDATORY "Container" suffix, e.g., `AppContainer`, `CreateListFormContainer`, `TodoListsViewContainer`
+  - **Rationale**: Container suffix distinguishes data/logic containers from presentational components, aligning with Redux/React architecture patterns
+  - Folder names MUST end with "Container": `containers/AppContainer/`
+  - File names MUST end with "Container": `AppContainer.tsx`, `AppContainer.styled.tsx`
+  - Exports MUST use "Container" suffix: `export const AppContainer: React.FC = () => {}`
+- **Container Selectors**: MUST follow pattern `get + ContainerName + Props`, e.g., `getAppContainerProps`, `getTodoListsViewContainerProps`, `getCreateListFormContainerProps`
+  - **Rationale**: Consistent naming makes it clear which selector provides props for which container, improving code discoverability and maintainability
+  - File location: `selectors/containers.ts`
+  - Export pattern: `export const getAppContainerProps = createSelector(...)`
 - **Variables/Functions**: lowerCamelCase, e.g., `handleSubmit`, `todoItems`
 - **Files**: Match component/container name exactly, styled files include `.styled.` in name
 
@@ -139,4 +153,4 @@ This constitution supersedes all other development practices and guidelines. All
 - MINOR: New principles added or material guidance expansions
 - PATCH: Clarifications, wording fixes, non-semantic refinements
 
-**Version**: 1.1.0 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-16
+**Version**: 1.1.2 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-17

@@ -8,19 +8,8 @@ import {
   selectOperations,
 } from './base';
 
-// TodoElementsList container selectors
-export const selectListElements = (listId: string) => (state: RootState) =>
-  selectElementsItems(state).filter((el) => el.listId === listId);
-
-export const selectSelectedList = (listId: string) => (state: RootState) =>
-  selectListsItems(state).find((list) => list.id === listId);
-
-export const selectListCompletedCount = (listId: string) => (state: RootState) => {
-  const elements = selectElementsItems(state).filter((el) => el.listId === listId);
-  return elements.filter((el) => el.isCompleted).length;
-};
-
-export const selectListElementsWithStats = (listId: string) =>
+// TodoElementsListContainer selector
+export const getTodoElementsListContainerProps = (listId: string) =>
   createSelector(
     [selectElements, selectListsItems],
     (elementsState, lists) => {
@@ -38,8 +27,8 @@ export const selectListElementsWithStats = (listId: string) =>
     }
   );
 
-// TodoListsView container selectors
-export const selectListsViewData = createSelector(
+// TodoListsViewContainer selector
+export const getTodoListsViewContainerProps = createSelector(
   [selectLists],
   (listsState) => ({
     lists: listsState.items,
@@ -49,8 +38,8 @@ export const selectListsViewData = createSelector(
   })
 );
 
-// App container selectors
-export const selectPendingOperationsCount = createSelector(
+// AppContainer selector
+export const getAppContainerProps = createSelector(
   [selectOperations],
   (operations) => operations.filter((op) => op.status === 'pending').length
 );
