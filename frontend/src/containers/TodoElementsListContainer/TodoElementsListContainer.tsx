@@ -23,19 +23,16 @@ import {
   StatItem,
 } from './TodoElementsListContainer.styled';
 
-interface Props {
-  listId: string;
-}
-
-export const TodoElementsListContainer: React.FC<Props> = ({ listId }) => {
+export const TodoElementsListContainer: React.FC = () => {
   const dispatch = useAppDispatch();
   const {
+    listId,
     elements: listElements,
     selectedList,
     completedCount,
     loading,
     error,
-  } = useAppSelector(getTodoElementsListContainerProps(listId));
+  } = useAppSelector(getTodoElementsListContainerProps);
   const [localError, setLocalError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -45,6 +42,8 @@ export const TodoElementsListContainer: React.FC<Props> = ({ listId }) => {
   }, [dispatch, listId]);
 
   const handleCreateElement = async (text: string) => {
+    if (!listId) return;
+    
     try {
       setLocalError(null);
       await dispatch(createElement({ listId, data: { text } })).unwrap();

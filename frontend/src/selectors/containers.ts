@@ -6,26 +6,46 @@ import {
   selectListsItems,
   selectLists,
   selectOperations,
+  selectElementsLoading,
+  selectElementsError,
+  selectSelectedListId,
 } from './base';
 
 // TodoElementsListContainer selector
-export const getTodoElementsListContainerProps = (listId: string) =>
-  createSelector(
-    [selectElements, selectListsItems],
-    (elementsState, lists) => {
-      const listElements = elementsState.items.filter((el) => el.listId === listId);
-      const selectedList = lists.find((list) => list.id === listId);
-      const completedCount = listElements.filter((el) => el.isCompleted).length;
-      
+export const getTodoElementsListContainerProps = createSelector(
+  [
+    selectElementsItems,
+    selectListsItems,
+    selectElementsLoading,
+    selectElementsError,
+    selectSelectedListId,
+  ],
+  (elementsItems, lists, loading, error, selectedListId) => {
+    if (!selectedListId) {
       return {
-        elements: listElements,
-        selectedList,
-        completedCount,
-        loading: elementsState.loading,
-        error: elementsState.error,
+        listId: null,
+        elements: [],
+        selectedList: undefined,
+        completedCount: 0,
+        loading,
+        error,
       };
     }
-  );
+
+    const listElements = elementsItems.filter((el) => el.listId === selectedListId);
+    const selectedList = lists.find((list) => list.id === selectedListId);
+    const completedCount = listElements.filter((el) => el.isCompleted).length;
+    
+    return {
+      listId: selectedListId,
+      elements: listElements,
+      selectedList,
+      completedCount,
+      loading,
+      error,
+    };
+  }
+);
 
 // TodoListsViewContainer selector
 export const getTodoListsViewContainerProps = createSelector(

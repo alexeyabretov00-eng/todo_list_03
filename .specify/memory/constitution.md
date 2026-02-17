@@ -1,22 +1,25 @@
 <!--
-Sync Impact Report - Version 1.1.2 (Container Selector Naming Conventions)
+Sync Impact Report - Version 1.1.3 (Redux State First Pattern)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Version Change: 1.1.1 → 1.1.2
-Type: Patch (Naming Convention Addition)
+Version Change: 1.1.2 → 1.1.3
+Type: Patch (Best Practice Refinement)
 
-Changes in v1.1.2:
+Changes in v1.1.3:
+  ✓ Refined Selector Pattern: Use Redux state instead of passing props when data is in store
+  ✓ Rationale: Avoids prop drilling, maintains single source of truth, simplifies component APIs
+  ✓ Implementation: getTodoElementsListContainerProps uses selectSelectedListId from store
+  ✓ Removed listId prop from TodoElementsListContainer (now reads from store)
+  ✓ Parametrized selectors only for data NOT in store (e.g., component-specific filters)
+
+Previous Changes (v1.1.2):
   ✓ Added Container Selector Naming Convention: get + ContainerName + Props
-  ✓ Rationale: Consistent naming improves code discoverability and maintainability
   ✓ Pattern: getAppContainerProps, getTodoListsViewContainerProps, etc.
-  ✓ Implementation: All container selectors renamed following the new pattern
 
 Previous Changes (v1.1.1):
   ✓ Clarified Naming Conventions: Added mandatory "Container" suffix rule
-  ✓ Applied to: Folder names, file names, and component exports
 
 Previous Changes (v1.1.0):
   ✓ Updated Frontend Framework: React 18.x → React 19.x
-  ✓ Rationale: React 19 compiler optimizations, improved concurrent features
 
 Principles Unchanged:
   ✓ I. Single-User Architecture
@@ -25,15 +28,14 @@ Principles Unchanged:
   ✓ IV. Test-First Quality (NON-NEGOTIABLE)
   ✓ V. Component Isolation & Type Safety
 
-Impact Analysis (v1.1.2):
-  ✓ Breaking Changes: None (internal refactoring)
-  ✓ Selector Renames: selectListElementsWithStats → getTodoElementsListContainerProps
-                      selectListsViewData → getTodoListsViewContainerProps
-                      selectPendingOperationsCount → getAppContainerProps
-  ✓ Migration Path: N/A (all usages updated)
+Impact Analysis (v1.1.3):
+  ✓ Breaking Changes: None (memoization fix)
+  ✓ Selector Updates: getTodoElementsListContainerProps now accepts (state, listId)
+  ✓ Usage Change: useAppSelector((state) => getSelector(state, param))
+  ✓ Migration Path: Update container to pass state explicitly
 
 Commit Message:
-  docs: amend constitution v1.1.2 (add container selector naming convention)
+  docs: amend constitution v1.1.3 (add parametrized selector memoization pattern)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 -->
 
@@ -118,6 +120,12 @@ Environment-specific settings MUST be managed via `.env` files. Example: `API_PA
   - **Rationale**: Consistent naming makes it clear which selector provides props for which container, improving code discoverability and maintainability
   - File location: `selectors/containers.ts`
   - Export pattern: `export const getAppContainerProps = createSelector(...)`
+  - **Redux State First**: If data exists in Redux store, use selectors instead of passing as props
+    - Correct: Store `selectedListId` in state, read with `selectSelectedListId`
+    - Wrong: Pass `listId` through component props when it's already in store
+  - **Parametrized Selectors**: Only for cases where data is NOT in store (e.g., component-specific filters)
+    - Pattern: `createSelector([selectItems, (state, id) => id], (items, id) => ...)`
+    - Usage: `useAppSelector((state) => getSelector(state, param))`
 - **Variables/Functions**: lowerCamelCase, e.g., `handleSubmit`, `todoItems`
 - **Files**: Match component/container name exactly, styled files include `.styled.` in name
 
@@ -153,4 +161,4 @@ This constitution supersedes all other development practices and guidelines. All
 - MINOR: New principles added or material guidance expansions
 - PATCH: Clarifications, wording fixes, non-semantic refinements
 
-**Version**: 1.1.2 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-17
+**Version**: 1.1.3 | **Ratified**: 2026-02-16 | **Last Amended**: 2026-02-17

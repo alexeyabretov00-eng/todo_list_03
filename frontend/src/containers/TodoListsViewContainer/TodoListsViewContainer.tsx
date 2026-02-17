@@ -99,7 +99,7 @@ export const TodoListsViewContainer: React.FC = () => {
       {selectedListId && (
         <>
           <Divider />
-          <TodoElementsListContainer listId={selectedListId} />
+          <TodoElementsListContainer />
         </>
       )}
     </ViewContainer>
