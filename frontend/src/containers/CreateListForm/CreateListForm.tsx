@@ -11,9 +11,7 @@ export const CreateListForm: React.FC<Props> = ({ onSubmit, disabled = false }) 
   const [name, setName] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = () => {
     if (!name.trim()) {
       setError('List name is required');
       return;
@@ -34,12 +32,19 @@ export const CreateListForm: React.FC<Props> = ({ onSubmit, disabled = false }) 
     if (error) setError('');
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && name.trim() && !disabled) {
+      handleSubmit();
+    }
+  };
+
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer>
       <FormInput>
         <Input
           value={name}
           onChange={handleChange}
+          onKeyDown={handleKeyPress}
           placeholder="Enter list name..."
           error={error}
           fullWidth
@@ -47,7 +52,7 @@ export const CreateListForm: React.FC<Props> = ({ onSubmit, disabled = false }) 
           disabled={disabled}
         />
       </FormInput>
-      <Button type="submit" disabled={disabled || !name.trim()}>
+      <Button onClick={handleSubmit} disabled={disabled || !name.trim()}>
         Create List
       </Button>
     </FormContainer>

@@ -4,6 +4,7 @@ import { StyledInput, InputWrapper, InputLabel, InputError, InputProps } from '.
 interface Props extends InputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: string;
   label?: string;
@@ -16,6 +17,7 @@ interface Props extends InputProps {
 export const Input: React.FC<Props> = ({
   value,
   onChange,
+  onKeyDown,
   placeholder,
   type = 'text',
   label,
@@ -33,6 +35,7 @@ export const Input: React.FC<Props> = ({
         type={type}
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
         disabled={disabled}
         hasError={hasError || !!error}

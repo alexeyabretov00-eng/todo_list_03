@@ -11,9 +11,7 @@ export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false 
   const [text, setText] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
+  const handleSubmit = () => {
     if (!text.trim()) {
       setError('Element text is required');
       return;
@@ -34,12 +32,19 @@ export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false 
     if (error) setError('');
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && text.trim() && !disabled) {
+      handleSubmit();
+    }
+  };
+
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer>
       <FormInput>
         <Input
           value={text}
           onChange={handleChange}
+          onKeyDown={handleKeyPress}
           placeholder="Add a new task..."
           error={error}
           fullWidth
@@ -47,7 +52,7 @@ export const CreateElementForm: React.FC<Props> = ({ onSubmit, disabled = false 
           disabled={disabled}
         />
       </FormInput>
-      <Button type="submit" disabled={disabled || !text.trim()}>
+      <Button onClick={handleSubmit} disabled={disabled || !text.trim()}>
         Add Task
       </Button>
     </FormContainer>
